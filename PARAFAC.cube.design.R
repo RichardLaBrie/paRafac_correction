@@ -25,7 +25,7 @@
 
 
 
-PARAFAC.cube.design = function(path =getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F,Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T,pathlength = 1, split="_")
+PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner=T, EmEx.cor = T, Inner=T, pathlength = 1, split="_")
 {
   
   samplepercsv = 4
