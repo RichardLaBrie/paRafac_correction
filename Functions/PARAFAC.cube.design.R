@@ -146,7 +146,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
   
   if(EmEx.cor)
   {
-   file.Em = read.csv("../Emcorr_220 to 600.csv")
+   file.Em = read.csv("../Emcorr.csv")
    file.Ex = read.csv("../Excorr.csv")
    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
@@ -163,7 +163,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
   }
   if(EmEx.cor)
   {
-   file.Em = read.csv("../Emcorr_220 to 600.csv")
+   file.Em = read.csv("../Emcorr.csv")
    file.Ex = read.csv("../Excorr.csv")
    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
