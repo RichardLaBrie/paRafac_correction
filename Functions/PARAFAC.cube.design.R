@@ -156,10 +156,10 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
    {
     cube.RU.EmEx[,,k] = cube.RU[,,k] * Cor.mat
    setwd("..")
-   return(list(cube.RU.EmEx, filename, wlex, wlem, list.length))
+   return(list(cube.RU.EmEx, as.vector(unlist(filename)), wlex, wlem, list.length))
    }
   setwd("..") 
-  return(list(cube.RU, filename, wlex, wlem, list.length))
+  return(list(cube.RU, as.vector(unlist(filename)), wlex, wlem, list.length))
   }
   if(EmEx.cor)
   {
@@ -174,10 +174,10 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
     cube.EmEx[,,k] = cube[,,k] * Cor.mat
    }
   setwd("..")
-  return(list(cube.EmEx, filename, wlex, wlem, list.length))
+  return(list(cube.EmEx, as.vector(unlist(filename)), wlex, wlem, list.length))
   }
  setwd("..")
-	return(list(cube, filename, wlex, wlem, list.length))
+	return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
  }
 }
 
