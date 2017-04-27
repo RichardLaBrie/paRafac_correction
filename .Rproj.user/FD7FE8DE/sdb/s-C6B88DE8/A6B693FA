@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "source('./Functions/myPalette.R')\nsource('./Functions/NanoMean.R')\nsource('./Functions/InnerFilter.R')\nsource('./Functions/PARAFAC.cube.design.R')\nsource('./Functions/plot.eem.go.richard.R')\nsource('./Functions/plot.integrate.RAMAN.R')\nsource('./Functions/read.EEM.Richard.R')\nsource('./Functions/subtract.blank.plot.EEMs.Richard.R')\nsource('./Functions/plot.integrate.RAMAN.go.R')\nsource('./Functions/PlotAllEEM.R')\nsource('./Functions/ExportEEM.R')\nrequire(stringr)\nrequire(stringdist)\n\ncube=PARAFAC.cube.design()\n",
+    "created" : 1493252658315.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1228152940",
+    "id" : "A6B693FA",
+    "lastKnownWriteTime" : 1493254170,
+    "last_content_update" : 1493254175839,
+    "path" : "H:/Université/Github/CorrectionPARAFACinR/Functions/SOURCEME.R",
+    "project_path" : "Functions/SOURCEME.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
