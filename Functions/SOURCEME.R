@@ -9,7 +9,8 @@ source('./Functions/subtract.blank.plot.EEMs.Richard.R')
 source('./Functions/plot.integrate.RAMAN.go.R')
 source('./Functions/PlotAllEEM.R')
 source('./Functions/ExportEEM.R')
-require(stringr)
-require(stringdist)
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(stringr, stringdist)
 
 cube=PARAFAC.cube.design()

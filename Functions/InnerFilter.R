@@ -2,7 +2,7 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 {
 	wlex <- seq(excitation[1], excitation[2], excitation[3])
 	wlem <- seq(emission[1], emission[2], emission[3])
-  filename = unlist(name.ref)
+	filename = unlist(name.ref)
 	
   
 	file.dir = list.files()
@@ -18,8 +18,8 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	}
 	
 	file.data = unlist(file.list)
-  file.create("..\\verifyMatches.csv")
-  write.table(t(c("Target","Source","Distance")),"..\\verifyMatches.csv",append=T,sep=",",col.names = F)
+	file.create("..\\verifyMatches.csv")
+	write.table(t(c("Target","Source","Distance")),"..\\verifyMatches.csv",append=T,sep=",",col.names = F)
   
 	selectMinStringDist <- function(target,source)
 	{
@@ -32,7 +32,7 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	}
 
 	index=sapply(filename,	selectMinStringDist,source=file.data)
-  file.data=file.data[index]
+	file.data=file.data[index]
 	
 	for(i in 1:length(file.data))
 	{
