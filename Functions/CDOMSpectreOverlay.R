@@ -6,7 +6,7 @@ CDOMOverlay <- function()
 	CDOM = list()
 	for(i in 1:length(file.data))
 	{
-		data = read.table(paste(".data/CDOM/", file.data[i], sep=""), skip = 1, header = 1, sep=",")
+		data = read.table(paste("./data/CDOM/", file.data[i], sep=""), skip = 1, header = 1, sep=",")
 		WV = data[,1]
 		abs = data[,2]
 		CDOM[[i]] = cbind(WV, abs)
