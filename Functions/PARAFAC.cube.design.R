@@ -33,7 +33,8 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
  nex = length(wlex)
  nem  = length(wlem)
 
-	setwd(".\\data")
+	if(.Platform$OS.type == "windows") setwd(".\\data")
+	if(.Platform$OS.type == "unix") setwd("./data")
 	
 	file.dir = list.files()
 	nano.temp = grep("nano", file.dir)
