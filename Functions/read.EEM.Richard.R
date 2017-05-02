@@ -213,7 +213,7 @@ read.EEM.Richard <- function(filename, excitation = c(220, 450, 5), emission = c
   x = unlist(strsplit(filename, "/"))
   ix = length(x)
   y = unlist(strsplit(x[ix], ".", fixed = T))[2] #était à [1]
-  z = strplit(y, "split")
+  z = strsplit(y, "split")
   }
  }
  else
