@@ -139,10 +139,9 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
   }
   
   RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = F)
-  cube.RU = cube
   for(k in 1:length(cube[1,1,]))
   {
-   cube.RU[,,k] = cube[,,k] / RAMANInt
+   cube[,,k] = cube[,,k] / RAMANInt
   }
   
   if(EmEx.cor)
@@ -152,15 +151,14 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
    Cor.mat = Ex.cor %*% Em.cor
-   cube.RU.EmEx = cube.RU
-   for(k in 1:length(cube.RU[1,1,]))
+   for(k in 1:length(cube[1,1,]))
    {
-    cube.RU.EmEx[,,k] = cube.RU[,,k] * Cor.mat
+    cube[,,k] = cube[,,k] * Cor.mat
    setwd("..")
-   return(list(cube.RU.EmEx, as.vector(unlist(filename)), wlex, wlem, list.length))
+   return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
    }
   setwd("..") 
-  return(list(cube.RU, as.vector(unlist(filename)), wlex, wlem, list.length))
+  return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
   }
   if(EmEx.cor)
   {
@@ -169,13 +167,12 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
    Cor.mat = Ex.cor %*% Em.cor
-   cube.EmEx = cube
    for(k in 1:length(cube[1,1,]))
    {
-    cube.EmEx[,,k] = cube[,,k] * Cor.mat
+    cube[,,k] = cube[,,k] * Cor.mat
    }
   setwd("..")
-  return(list(cube.EmEx, as.vector(unlist(filename)), wlex, wlem, list.length))
+  return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
   }
  setwd("..")
 	return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
