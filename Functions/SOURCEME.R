@@ -1,3 +1,8 @@
+if (!require("stringr")) install.packages("stringr")
+library("stringr")
+if (!require("stringdist")) install.packages("stringdist")
+library("stringdist")
+
 source('./Functions/myPalette.R')
 source('./Functions/NanoMean.R')
 source('./Functions/InnerFilter.R')
@@ -10,7 +15,4 @@ source('./Functions/plot.integrate.RAMAN.go.R')
 source('./Functions/PlotAllEEM.R')
 source('./Functions/ExportEEM.R')
 
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(stringr, stringdist)
-
-cube=PARAFAC.cube.design()
+cube=PARAFAC.cube.design(dot.number = 2)

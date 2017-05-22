@@ -4,20 +4,20 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	wlem = seq(emission[1], emission[2], emission[3])
   filename = unlist(name.ref)
 	
-  
+  setwd("./CDOM")
 	file.dir = list.files()
-	nano.temp = grep("nano", file.dir)
-	fdom.temp = grep("FDOM",file.dir)
-	file.dir = file.dir[-nano.temp]
-	file.dir = file.dir[-fdom.temp]
-	file.list = list()
+	#nano.temp = grep("nano", file.dir)
+	#fdom.temp = grep("FDOM",file.dir)
+	#file.dir = file.dir[-nano.temp]
+	#file.dir = file.dir[-fdom.temp]
+	#file.list = list()
 	  
-	for(i in 1:length(file.dir))
-	{
-	  file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
-	}
+	#for(i in 1:length(file.dir))
+	#{
+	  #file.list[[i]] = paste(file.dir[i],"/",list.files(file.dir[i]),sep="")
+	#}
 	
-	file.data = unlist(file.list)
+	#file.data = unlist(file.list)
   file.create("..\\verifyMatches.csv")
   write.table(t(c("Target", "Source", "Distance")), "..\\verifyMatches.csv", append=T, sep=",", col.names = F)
   
@@ -31,12 +31,14 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 	  return(c(index))
 	}
 
-	index = sapply(filename, selectMinStringDist, source = file.data)
-  file.data = file.data[index]
+	index = sapply(filename, selectMinStringDist, source = file.dir) #Was source = file.data
+  #file.data = file.data[index]
+	file.dir = file.dir[index]
 	
-	for(i in 1:length(file.data))
+	
+	for(i in 1:length(file.dir)) #when file.dir, it was file.data
 	{
-		Abs = read.table(file.data[i], skip = skip, header = skip + 1, sep=",")
+		Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
 		WV = Abs[,1]
 		Absex = sapply(wlex, function(x){return(subset(Abs[,2], WV == x))})
 		Absem = sapply(wlem, function(x){return(subset(Abs[,2], WV == x))})
@@ -44,5 +46,6 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
 		Amat2 = 10^(-0.5 * pathlength * Amat)
 		cube[,,i] = cube[,,i] / Amat2
 	}
+	setwd("..")
 return(cube)
 }

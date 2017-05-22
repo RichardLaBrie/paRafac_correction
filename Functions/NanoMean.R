@@ -6,24 +6,25 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	nex = length(wlex)
 	nem  = length(wlem)
   
-	setwd(path)
+	#setwd(path)
+	setwd("./nano")
 	filename = list()
 	counter = 1
 	data.list = list()
 	index = 0
 	list.length = 0
 	
-	file.dir = list.files()
-	fdom.temp = grep("FDOM", file.dir)
-	cdom.temp = grep("CDOM", file.dir)
-	file.dir = file.dir[-fdom.temp]
-	file.dir = file.dir[-cdom.temp]
-	file.list = list()
+	file.list = list.files() #was file.dir
+	#fdom.temp = grep("FDOM", file.dir)
+	#cdom.temp = grep("CDOM", file.dir)
+	#file.dir = file.dir[-fdom.temp]
+	#file.dir = file.dir[-cdom.temp]
+	#file.list = list()
 
-	for(i in 1:length(file.dir))
-	{
-	  file.list[[i]] = paste(file.dir[i], "/", list.files(file.dir[i]), sep = "")
-	}
+	#for(i in 1:length(file.dir))
+	#{
+	  #file.list[[i]] = paste(file.dir[i], "/", list.files(file.dir[i]), sep = "")
+	#}
 	file.data = unlist(file.list)
   
 	if(length(file.data) > 1)
@@ -60,7 +61,9 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	if(RU)
 	{
 		data = list(EEM.list = list(eem=dummy), wlex = wlex, wlem = wlem)
+		setwd("..")
 		return(data)
 	}
+	setwd("..")
 	return(dummy)	
 }
