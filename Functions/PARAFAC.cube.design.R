@@ -19,13 +19,14 @@
 #'Default is True. Emission and excitation file must be numerics only stored in csv file.
 #'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
 #'
+#'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
 #'@export
 #'
 #'
 
 
 
-PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1)
+PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1,  dot.number = 1)
 {
  samplepercsv = 4
  wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -88,7 +89,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
 		{
 			for (i in 1:length(file.data))
 			{
-					EEM = read.EEM.Richard(file.data[i], excitation, emission, EMCOL, counter, split = split)
+					EEM = read.EEM.Richard(file.data[i], excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
 					data.list[[i + index]] = EEM$EEM.list
 					filename[[i + index]] = unlist(EEM$EEM.name)
 			}
@@ -99,7 +100,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
 		{
 			if(length(file.data) == 1)
 			{
-				EEM = read.EEM.Richard(file.data, excitation, emission, EMCOL, counter, split = split)
+				EEM = read.EEM.Richard(file.data, excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
 				data.list[[index + 1]] = EEM$EEM.list
 				filename[[index + 1]] = unlist(EEM$EEM.name)
 				index = index + 1
