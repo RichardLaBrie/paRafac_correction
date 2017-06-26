@@ -8,7 +8,7 @@ MissnamedData is an example that will work, but will have a missmatch between 1 
 ## Structure of the folders:
 Excitation and emission correction csv have to be in the same folder as the .Rproj
 
-FDOM, CDOM and nano files must be in these repositories exactly and respect the case (upper for CDOM and FDOM, lower for nano)
+FDOM, CDOM and nano files must be in these repositories exactly and respect the case (upper for CDOM and FDOM, lower for nano). FDOM and CDOM files must have the same name
 
 ->data
 
