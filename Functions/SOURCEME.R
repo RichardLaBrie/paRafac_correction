@@ -14,5 +14,8 @@ source('./Functions/subtract.blank.plot.EEMs.Richard.R')
 source('./Functions/plot.integrate.RAMAN.go.R')
 source('./Functions/PlotAllEEM.R')
 source('./Functions/ExportEEM.R')
+source('./Functions/CDOMIndices.R')
+source('./Functions/selectMinStringDist.R')
+
 
 cube=PARAFAC.cube.design(dot.number = 2)

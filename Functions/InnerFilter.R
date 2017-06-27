@@ -21,17 +21,7 @@ InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 
   file.create("..\\verifyMatches.csv")
   write.table(t(c("Target", "Source", "Distance")), "..\\verifyMatches.csv", append=T, sep=",", col.names = F)
   
-	selectMinStringDist = function(target, source)
-	{
-  	dist = stringdist(target, source, method="lcs")
-	  index = which.min(dist)
-	  min = dist[index]
-	  #if((dist[index]-12)>0)warning(paste("Dist was",dist[index]-12,"for",target,source[index]))
-	  write.table(t(c(target, source[index] ,min)), "..\\verifyMatches.csv", append=T, sep = ",", col.names = F)
-	  return(c(index))
-	}
-
-	index = sapply(filename, selectMinStringDist, source = file.dir) #Was source = file.data
+	index = sapply(filename, selectMinStringDist, source = file.dir, name = "verifyMatches") #Was source = file.data
   #file.data = file.data[index]
 	file.dir = file.dir[index]
 	
