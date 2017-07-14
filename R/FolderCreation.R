@@ -1,3 +1,5 @@
+#'@export
+
 #Example: FolderCreation(path.to.folder = "D:/test", WorkingDirectory = "test")
 
 FolderCreation <- function(path.to.folder,WorkingDirectory, subfiles = c("CDOM","FDOM","nano"))
