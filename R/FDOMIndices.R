@@ -1,3 +1,5 @@
+#'@export
+
 #These functions are designed to work with the output of PARAFAC.cube.design()
 #They can't be used directly with fluorescence scan unless they are stacked in a array (Ex, Em, Samples)
 
