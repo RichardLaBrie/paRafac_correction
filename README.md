@@ -8,7 +8,7 @@ if (!require("devtools")) install.packages("devtools")
 
 library("devtools")  
 devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Development")  
-library("paRafac_correction")  
+library("paRafac.correction")  
 
 ## Download and try the functions  
 set your working directory  
