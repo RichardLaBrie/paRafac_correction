@@ -17,9 +17,8 @@
 #'
 #'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
 #' @export
-PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1,  dot.number = 1)
+PARAFAC.cube.design = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1,  dot.number = 1)
 {
-print(getwd())
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
   wlem = seq(emission[1], emission[2], emission[3])
@@ -27,8 +26,7 @@ print(getwd())
   nem  = length(wlem)
 
  setwd("./data")
-setwd("./FDOM")
-	print(getwd())
+ setwd("./FDOM")
 	file.dir = list.files()
 	#nano.temp = grep("nano", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
@@ -106,7 +104,7 @@ setwd("./FDOM")
 	
 	if(Subtract.Blank)
 	{
-	 Raman = NanoMean(path, excitation, emission, EMCOL, RU = T, split = split)
+	 Raman = NanoMean(excitation, emission, EMCOL, RU = T, split = split)
 	 for(k in 1:length(cube[1,1,]))
 	 {
 	  cube[,,k] = cube[,,k] - Raman[[1]]$eem[,,1]
@@ -114,7 +112,7 @@ setwd("./FDOM")
 	}
 	if(Inner)
 	{
-	 cube = InnerFilter(path, cube, excitation, emission, pathlength, filename, skip)
+	 cube = InnerFilter(cube, excitation, emission, pathlength, filename, skip)
 	}
 
 	if(rm.corner)
@@ -130,7 +128,7 @@ setwd("./FDOM")
   {
     if(Subtract.Blank == F)
     {
-      Raman = NanoMean(path, excitation, emission, EMCOL, split = split, RU = T)
+      Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T)
     }
   
     RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = F)
