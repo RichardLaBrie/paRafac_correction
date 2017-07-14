@@ -1,3 +1,5 @@
+#'@export
+
 #This function export your data into 1 single txt files that will be incorporated in Matlab for the PARAFAC
 
 ExportEEM <- function(cube, cut = c(0,0,0))
