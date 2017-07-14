@@ -1,4 +1,4 @@
-Package: paRafac_correction
+Package: paRafac.correction
 Title: Corrects EEM all at once before using Matlab for PARAFAC
 Version: 0.1
 Authors@R: c(person("Richard", "LaBrie", email = "richard.labrie@umontreal.ca", role = c("aut", "cre")), person("Nicolas", "Fortin St-Gelais", email = "nicolas.fstgelais@gmail.com", role = c("aut")), person("Simon", "Bélanger", email = "belasim01@gmail.com", role = c("aut")))
