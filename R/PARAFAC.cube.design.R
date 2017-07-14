@@ -43,7 +43,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
 	  #file.list[[i]] = paste(file.dir[i], "/", list.files(file.dir[i]), sep = "")
 	#}
   #file.list = unlist(file.list)
-	csv.count = str_count(file.dir, "_") + 1 #when file.dir it was file.list
+	csv.count = stringr::str_count(file.dir, "_") + 1 #when file.dir it was file.list
 	 
   file.sample = file.dir[csv.count == 1]
   file.sample2 = file.dir[csv.count == 2]
