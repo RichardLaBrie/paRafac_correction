@@ -1,20 +1,26 @@
+#'@title Generic functions for commonly used CDOM indices
+#'
+#'@description This function reads any number of CDOM files and calculate basic indices.
+#'You have to manually load DOC file for SUVA
+#'Wavelengths chosen based on Helms 2008
+#'Calculate spectral slope with a reference wavelength
+#'The model use a nonlinear least square fitting routine
+#'The equation is abs = abs0 * exp(-S(wavelength - ref.wavelength)) + K as in Markager & Vincent 2000
+#'where abs is the absorption coef, abs0 is the reference absorption coef at wavelenth and ref.wavelength
+#'S is the slope and K is an additional background parameter to allow baseline to shift 
+
+#'@param FileSelect is a logical parameter to allow you which file to load. Default is FALSE, meaning that all files in /CDOM
+#'will be loaded
+#'@param wl0 is the reference wavelength, default is 375 as in Stedmon, Markager and Kaas 2000
+#'@param FROM is the wavelenth at which you want to start calculating the exponential fit
+#'@param To is the wavelenth at which you want to end calculating the exponential fit
+#'@param By is the step between each wavelength
+#'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
+#'
+
 #'@export
 
-#Wavelengths chosen based on Helms 2008
-#Calculate spectral slope with a reference wavelength
-#FileSelect is a logical argument for the number of files to load. Default is FALSE, meaning that the function
-  #will automatically load and calculate S for all CDOM files "./data/CDOM"
-  #If TRUE, you get to choose the files you want
-#wl0 is the reference wavelength, default is 375 as in Stedmon, Markager and Kaas 2000
-#From is the first wavelength needed to compute the exponential fit, default is 300 as in Stedmon, Markager and Kaas 2000
-#To is the last wavelength needed, default is 650 as in Stedmon, Markager and Kaas 2000
-#By is the step between each wavelength, default is 1
-#skip is the number of lines to skip before getting the header in CDOM files
 
-#The model use a nonlinear least square fitting routine
-#The equation is abs = abs0 * exp(-S(wavelength - ref.wavelength)) + K as in Markager & Vincent 2000
-#where abs is the absorption coef, abs0 is the reference absorption coef at wavelenth and ref.wavelength
-#S is the slope and K is an additional background parameter to allow baseline to shift 
 
 
 SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 275, To = 650, By = 1, skip = 1)
