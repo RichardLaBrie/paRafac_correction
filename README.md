@@ -10,6 +10,10 @@ library("devtools")
 devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Development")  
 library("paRafac_correction")  
 
+## Download and try the functions  
+set your working directory  
+Download and save in working directory (https://github.com/RichardLaBrie/paRafac_correction/blob/Development/data.zip)  
+unzip("./data.zip")  
 
 This will produce the output with the 25 samples given as example  
 cube=PARAFAC.cube.design(dot.number = 2)
