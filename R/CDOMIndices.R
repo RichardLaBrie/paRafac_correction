@@ -15,9 +15,9 @@
 #S is the slope and K is an additional background parameter to allow baseline to shift 
 
 
-SpectralSlope <- function(FileSelect = F, wl0 = 375, From = 275, To = 650, By = 1, skip = 1)
+SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 275, To = 650, By = 1, skip = 1)
 {
-    setwd("./data/CDOM")
+    setwd(paste0("./",data.file,"/CDOM"))
     if(!FileSelect) file.dir = list.files()
     if(FileSelect) file.dir = choose.files()
     #create sequence of desired wavelengths
