@@ -1,4 +1,4 @@
-InnerFilter = function(path, cube, excitation = c(220,450,5), emission = c(230, 600, 2), pathlength=1, name.ref, skip)
+InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2), pathlength=1, name.ref, skip)
 {
 	wlex = seq(excitation[1], excitation[2], excitation[3])
 	wlem = seq(emission[1], emission[2], emission[3])
