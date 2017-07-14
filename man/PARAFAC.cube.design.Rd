@@ -29,8 +29,6 @@ Default is True. Emission and excitation file must be numerics only stored in cs
 \item{skip}{is a parameter to determine how many lines will be skiped before the header in the absorbance files}
 
 \item{dot.number}{is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"}
-
-\item{samplepercsv}{is a parameter which indicates the number of sample in the csv file coming from the fluorometer.}
 }
 \description{
 This function reads any number of EEMs and produce a cube of EEMs.

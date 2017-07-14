@@ -3,16 +3,12 @@
 #'
 #'@description This function reads any number of EEMs and produce a cube of EEMs.
 #'It enables the standardization into Raman Unit and instrument's corrections.
-#'
-#'@path Full path of the working directory (can be called using getwd())
 #'@param excitation is a vector of three variables of the scanning setup (min,max,interval).
 #'Default is c(220,450,5)
 #'@param emission is a vector of three variables of the scanning setup (min,max,interval).
 #'Default is c(230,600,2)
 #'@param EMCOL is a logical parameter indicating whether or not the emission are
 #'stored as column in the csv file. Default is FALSE.
-#'@param 
-#'@param samplepercsv is a parameter which indicates the number of sample in the csv file coming from the fluorometer.
 #'@param RU is a logical parameter to transform fluorescence intensities into Raman Unit at Ex = 350 nm.
 #'Default is TRUE.
 #'@param EmEx.cor is a logical parameter to correct EEMs for emission and excitation corrections.
