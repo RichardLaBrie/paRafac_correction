@@ -1,0 +1,21 @@
+if (!require("stringr")) install.packages("stringr")
+library("stringr")
+if (!require("stringdist")) install.packages("stringdist")
+library("stringdist")
+
+source('./Functions/myPalette.R')
+source('./Functions/NanoMean.R')
+source('./Functions/InnerFilter.R')
+source('./Functions/PARAFAC.cube.design.R')
+source('./Functions/plot.eem.go.R')
+source('./Functions/plot.integrate.RAMAN.R')
+source('./Functions/read.EEM.R')
+source('./Functions/subtract.blank.plot.EEMs.R')
+source('./Functions/plot.integrate.RAMAN.go.R')
+source('./Functions/PlotAllEEM.R')
+source('./Functions/ExportEEM.R')
+source('./Functions/CDOMIndices.R')
+source('./Functions/selectMinStringDist.R')
+
+
+cube=PARAFAC.cube.design(dot.number = 2)
