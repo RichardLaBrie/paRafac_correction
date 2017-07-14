@@ -7,6 +7,7 @@ The 'MissnamedData' folder is an example where data files are properly stuctured
 if (!require("devtools")) install.packages("devtools")
 
 library("devtools")
+
 devtools::install_github("RichardLaBrie/paRafac_correction")
 
 ## Structure of the folders:
