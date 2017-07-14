@@ -1,3 +1,5 @@
+#'@export
+
 PlotAllEEM <- function(cube, zlim = c(0,1), ExportPDF = T)
 {
 	setwd(getwd())
