@@ -1,3 +1,7 @@
+#'@title Superimpose all absorbance scan
+#'
+#'@description This function reads all files in /CDOM and plot them.
+
 #'@export
 
 CDOMOverlay <- function()
