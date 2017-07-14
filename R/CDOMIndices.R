@@ -1,3 +1,5 @@
+#'@export
+
 #Wavelengths chosen based on Helms 2008
 #Calculate spectral slope with a reference wavelength
 #FileSelect is a logical argument for the number of files to load. Default is FALSE, meaning that the function
