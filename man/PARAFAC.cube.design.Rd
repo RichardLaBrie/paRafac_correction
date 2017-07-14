@@ -5,7 +5,7 @@
 \title{Combine EEMs produce by the Cary Eclipse fluorometer into a cube
 ready for PARAFAC analysis in Matlab}
 \usage{
-PARAFAC.cube.design(path = getwd(), excitation = c(220, 450, 5),
+PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T,
   rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
   skip = 1, dot.number = 1)
