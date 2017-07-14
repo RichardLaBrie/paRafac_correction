@@ -6,9 +6,11 @@ The 'MissnamedData' folder is an example where data files are properly stuctured
 ## How to install the package
 if (!require("devtools")) install.packages("devtools")
 
-library("devtools")
+library("devtools")  
+devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Development")  
 
-devtools::install_github("RichardLaBrie/paRafac_correction")
+This will produce the output with the 25 samples given as example  
+cube=PARAFAC.cube.design(dot.number = 2)
 
 ## Structure of the folders:
 The 'excitation and emission correction' .csv file has to be in the same folder as the .Rproj file.
