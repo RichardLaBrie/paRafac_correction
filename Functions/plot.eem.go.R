@@ -49,7 +49,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 	if (RU)
 	{
 		file.nano = choose.files(caption = "Select Raman file")
-		Raman = read.EEM.Richard(file.nano, excitation, emission, EMCOL)
+		Raman = read.EEM(file.nano, excitation, emission, EMCOL)
 		RamanInt = plot.integrate.RAMAN.go(Raman, maxF, graph = F)
 	}
 	
@@ -81,7 +81,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 	 }
 	 else
 	 {
-	  NANO = read.EEM.Richard(file.nano, excitation, emission, EMCOL)
+	  NANO = read.EEM(file.nano, excitation, emission, EMCOL)
 		 RamanInt = plot.integrate.RAMAN.go(NANO, maxF)
 	 }
 	
@@ -90,13 +90,13 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 			for (i in 1: length(file.sample)) 
 			{
 				print(file.sample[i])
-				EEM = read.EEM.Richard(file.sample[i], excitation, emission, EMCOL, samplepercsv)
+				EEM = read.EEM(file.sample[i], excitation, emission, EMCOL, samplepercsv)
 				EEM = subtract.blank.plot.EEMs(NANO, EEM, zlim, PLOT.BLANK, RamanInt, samplepercsv, RU) # here we pass the file names instead of the eems
 			}
 		}	
 		else
 		{
-			EEM = read.EEM.Richard(file.sample, excitation, emission, EMCOL, samplepercsv)
+			EEM = read.EEM(file.sample, excitation, emission, EMCOL, samplepercsv)
 			EEM = subtract.blank.plot.EEMs(NANO, EEM, zlim, PLOT.BLANK, RamanInt, samplepercsv, RU)
 		}
 		if (PLOT.RAMAN)
@@ -120,7 +120,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 		{
 			if (samplepercsv == 1)
 			{
-				EEM = read.EEM.Richard(file.sample, excitation, emission, EMCOL, samplepercsv)
+				EEM = read.EEM(file.sample, excitation, emission, EMCOL, samplepercsv)
 				par(mar = c(8, 8, 5, 4))
 				if(RU)
 				{
@@ -139,7 +139,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 			{
 				if (samplepercsv == 2)
 				{
-					EEM = read.EEM.Richard(file.sample, excitation, emission, EMCOL, samplepercsv)
+					EEM = read.EEM(file.sample, excitation, emission, EMCOL, samplepercsv)
 					par(mar = c(8, 8, 5, 4))
 					if(RU)
 					{
@@ -163,7 +163,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 				{
 					if (samplepercsv == 3)
 					{
-						EEM = read.EEM.Richard(file.sample, excitation, emission, EMCOL, samplepercsv)
+						EEM = read.EEM(file.sample, excitation, emission, EMCOL, samplepercsv)
 						par(mar = c(8, 8, 5, 4))
 						if(RU)
 						{
@@ -190,7 +190,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 					}
 					else
 					{
-						EEM = read.EEM.Richard(file.sample, excitation, emission, EMCOL, samplepercsv)
+						EEM = read.EEM(file.sample, excitation, emission, EMCOL, samplepercsv)
 						par(mar = c(8, 8, 5, 4))
 						if(RU)
 						{
@@ -229,7 +229,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 			{
 				for(i in 1: length(file.sample))
 				{
-					EEM = read.EEM.Richard(file.sample[i], excitation, emission, EMCOL, samplepercsv)
+					EEM = read.EEM(file.sample[i], excitation, emission, EMCOL, samplepercsv)
 					par(mar = c(8, 8, 5, 4))
 					if(RU)
 					{
@@ -251,7 +251,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 				{
 					for(i in 1:length(file.sample))
 					{
-						EEM = read.EEM.Richard(file.sample[i], excitation, emission, EMCOL, samplepercsv)
+						EEM = read.EEM(file.sample[i], excitation, emission, EMCOL, samplepercsv)
 						par(mar = c(8, 8, 5, 4))
 						if(RU)
 						{
@@ -278,7 +278,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 					{
 						for(i in 1:length(file.sample))
 						{
-							EEM = read.EEM.Richard(file.sample[i], excitation, emission, EMCOL, samplepercsv)
+							EEM = read.EEM(file.sample[i], excitation, emission, EMCOL, samplepercsv)
 							par(mar = c(8, 8, 5, 4))
 							if(RU)
 							{
@@ -308,7 +308,7 @@ plot.EEM.go <- function(path, zlim = c(0, 10),
 					{
 						for (i in 1:length(file.sample))
 						{
-							EEM = read.EEM.Richard(file.sample[i], excitation, emission, EMCOL, samplepercsv)
+							EEM = read.EEM(file.sample[i], excitation, emission, EMCOL, samplepercsv)
 							par(mar = c(8, 8, 5, 4))
 							if(RU)
 							{

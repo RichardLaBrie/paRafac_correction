@@ -15,7 +15,7 @@
 #S is the slope and K is an additional background parameter to allow baseline to shift 
 
 
-SpectralSlope <- function(FileSelect = F, wl0 = 375, From = 300, To = 650, By = 1, skip = 1)
+SpectralSlope <- function(FileSelect = F, wl0 = 375, From = 275, To = 650, By = 1, skip = 1)
 {
     setwd("./data/CDOM")
     if(!FileSelect) file.dir = list.files()
@@ -43,11 +43,12 @@ SpectralSlope <- function(FileSelect = F, wl0 = 375, From = 300, To = 650, By = 
       
       R2 <- 1 - sum((Abs.y - predict(nls.temp))^2) / (length(Abs.y) * var(Abs.y)) #Denominator is sum(y-mean(y))² which is variance(y) times length(y)
       
-      output[i,1] = coef(nls.temp)[3]
+      output[i,1] = coef(nls.temp)[1]
       output[i,2] = coef(nls.temp)[2]
       output[i,3] = R2
       output[i,4] = coef(nls.temp)[3]
     }
+    class(output) = "SpectralSlope"
     
     #Go back to main folder
     setwd("..")
@@ -65,9 +66,13 @@ SpectralSlope <- function(FileSelect = F, wl0 = 375, From = 300, To = 650, By = 
 #wl2.0 is the reference wavelength for the spectral ratio denominator
 #By is the step between each wavelength, default is 1
 #skip is the number of lines to skip before getting the header in CDOM files
+#Logfit is a logical parameter to compute the slope ratio using log-transform data to calculate the slopes
+  #Default is TRUE. If FALSE, the function does two fit routine for each subsection of the spectra
+  #Values differ more as the ratio diminish
 
 Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
 {
+
   setwd("./data/CDOM")
   if(!FileSelect) file.dir = list.files()
   if(FileSelect) file.dir = choose.files()
@@ -84,23 +89,38 @@ Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 40
     Abs.num = sapply(wl.num, function(x){return(subset(CDOM[,2], WL == x))})
     Abs.denom = sapply(wl.denom, function(x){return(subset(CDOM[,2], WL == x))})
     
-    
     #Calculate S for wl = 275 and wl = 350, based on Helms 2008
     Slope.num = coef(lm(log(Abs.num) ~ wl.num))[2]
-    SLope.denom = coef(lm(log(Abs.denom) ~ wl.denom))[2]
-    
+    Slope.denom = coef(lm(log(Abs.denom) ~ wl.denom))[2]
     #Calculate the slope ratio
-    Sr[i,1] = Slope.num / SLope.denom
+    Sr[i,1] = Slope.num / Slope.denom
   }
-
+  
   #Go back to main folder
   setwd("..")
   setwd("..")
   #Return result
   return(Sr)
+  
 }
 
-
+Sr.spectralslope <- function(data, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, wl0 = 375)
+{
+  if(class(data) != "SpectralSlope") return(Print("data must come from the SpectralSlope function"))
+  output = matrix(0,nrow=dim(data)[1])
+  colnames(output) = "Sr"
+  rownames(output) = rownames(data)
+  for(i in 1:dim(data)[1])
+  {
+  temp1 = (data[i,1] * exp(-1*data[i,2] * (wl1.2-wl0) + data[i,4]) - (data[i,1] *
+          exp(-1*data[i,2] * (wl1.1-wl0) + data[i,4])) / (wl1.2-wl1.1))
+  temp2 = (data[i,1] * exp(-1*data[i,2] * (wl2.2-wl0) + data[i,4]) - (data[i,1] *
+          exp(-1*data[i,2] * (wl2.1-wl0) + data[i,4])) / (wl2.2-wl2.1))
+  output[i,1] = temp1/temp2
+  }
+  
+  return(output)
+}
 
 
 #DOC must be in mg/L, with sample names as row names and one column with the values

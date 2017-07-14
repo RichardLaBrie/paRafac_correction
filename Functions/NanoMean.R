@@ -31,7 +31,7 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	{
 		for (i in 1:length(file.data))
 		{
-			EEM = read.EEM.Richard(file.data[i], excitation, emission, EMCOL, counter, split = split)
+			EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split = split)
 			data.list[[i + index]] = EEM$EEM.list
 			filename[[i + index]] = unlist(EEM$EEM.name)
 			index = index + length(file.data)
@@ -42,7 +42,7 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	{
 		if(length(file.data) == 1)
 		{
-			EEM = read.EEM.Richard(file.data, excitation, emission, EMCOL, counter, split = split)
+			EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split = split)
 			data.list[[index + 1]] = EEM$EEM.list
 			filename[[index + 1]] = unlist(EEM$EEM.name)
 			index = index + 1

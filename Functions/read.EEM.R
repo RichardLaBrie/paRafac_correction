@@ -19,7 +19,7 @@
 #'
 #
 
-read.EEM.Richard <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1)
+read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1)
 {
 
  # define wavelenght vectors and matrix
