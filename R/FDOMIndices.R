@@ -1,3 +1,11 @@
+#'@title Generic functions for commonly used FDOM indices
+#'
+#'@description These functions are designed to work with the output of PARAFAC.cube.design and calculate basic FDOM indices.
+#'
+
+#'@param cube is the output of PARAFAC.cube.design()
+#'@param cor is a logical parameter for instruments corrections applied to EEMs. Default is TRUE
+
 #'@export
 
 #These functions are designed to work with the output of PARAFAC.cube.design()
