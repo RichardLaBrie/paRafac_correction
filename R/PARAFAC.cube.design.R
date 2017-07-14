@@ -29,8 +29,8 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
   nex = length(wlex)
   nem  = length(wlem)
 
-  setwd("../data")
-	setwd("../FDOM")
+  #setwd("../data")
+	#setwd("../FDOM")
 	file.dir = list.files()
 	#nano.temp = grep("nano", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
