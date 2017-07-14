@@ -19,6 +19,7 @@
 #' @export
 PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1,  dot.number = 1)
 {
+print(getwd())
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
   wlem = seq(emission[1], emission[2], emission[3])
@@ -27,6 +28,7 @@ PARAFAC.cube.design = function(path = getwd(), excitation = c(220,450,5), emissi
 
  setwd("./data")
 setwd("./FDOM")
+	print(getwd())
 	file.dir = list.files()
 	#nano.temp = grep("nano", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
