@@ -8,6 +8,8 @@ if (!require("devtools")) install.packages("devtools")
 
 library("devtools")  
 devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Development")  
+library("paRafac_correction")  
+
 
 This will produce the output with the 25 samples given as example  
 cube=PARAFAC.cube.design(dot.number = 2)
