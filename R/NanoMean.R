@@ -1,4 +1,4 @@
-NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, split="_", RU = F)
+NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, split="_", RU = F)
 
 {
 	wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -6,7 +6,6 @@ NanoMean = function(path, excitation = c(220,450,5), emission = c(230, 600, 2), 
 	nex = length(wlex)
 	nem  = length(wlem)
   
-	#setwd(path)
 	setwd("./nano")
 	filename = list()
 	counter = 1
