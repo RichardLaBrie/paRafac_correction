@@ -1,3 +1,5 @@
+#'@export
+
 CDOMOverlay <- function()
 {
 	#file.data = choose.files(caption="Select CDOM file(s)")
