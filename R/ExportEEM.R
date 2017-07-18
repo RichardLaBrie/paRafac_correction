@@ -1,4 +1,13 @@
-#This function export your data into 1 single txt files that will be incorporated in Matlab for the PARAFAC
+#'@title This function export your data into 1 single txt files that will be incorporated in Matlab for the PARAFAC
+#'
+#'@description This function export in text file the output of PARAFAC.cube.design()
+#'It is possible to cut the cube if all excitation, emission or samples are not required
+
+#'@param cube is the output of PARAFAC.cube.design()
+#'@param cut is the number of excitation, emission and sample to remove from cube, respectively. Default is c(0,0,0)
+#'@export
+
+#
 
 ExportEEM <- function(cube, cut = c(0,0,0))
 {

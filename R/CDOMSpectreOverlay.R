@@ -1,4 +1,11 @@
-CDOMOverlay <- function()
+#'@title Superimpose all absorbance scan
+#'
+#'@description This function reads all files in /CDOM and plot them.
+#'@param pdf is a logical paramter to export curves in a pdf file. Default is F
+
+#'@export
+
+CDOMOverlay <- function(pdf = F)
 {
 	#file.data = choose.files(caption="Select CDOM file(s)")
 	
@@ -11,7 +18,7 @@ CDOMOverlay <- function()
 		abs = data[,2]
 		CDOM[[i]] = cbind(WV, abs)
 	}
-	pdf("CDOM_courbes.pdf")
+	if(pdf) pdf("CDOM_courbes.pdf")
 	for(i in 1:length(CDOM))
 	{
     CDOM.temp = CDOM[[i]][,2]
@@ -24,6 +31,6 @@ CDOMOverlay <- function()
 			lines(CDOM.temp ~ CDOM[[i]][,1])
 		}
 	}
-  dev.off()
+  if(pdf) dev.off()
 }
 

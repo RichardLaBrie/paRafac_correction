@@ -19,7 +19,7 @@
 #'
 #
 
-read.EEM.Richard <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, split = "_")
+read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1)
 {
 
  # define wavelenght vectors and matrix
@@ -207,13 +207,13 @@ read.EEM.Richard <- function(filename, excitation = c(220, 450, 5), emission = c
   {
   x = unlist(strsplit(filename, '/'))
   ix = length(x)
-  z = unlist(strsplit(x[ix], ".", fixed = T))[2] #était à [1]
+  z = unlist(strsplit(x[ix], ".", fixed = T))[dot.number] 
   }
   else
   {
   x = unlist(strsplit(filename, "/"))
   ix = length(x)
-  y = unlist(strsplit(x[ix], ".", fixed = T))[2] #était à [1]
+  y = unlist(strsplit(x[ix], ".", fixed = T))[dot.number] 
   z = unlist(strsplit(y, split))
   }
  }
@@ -223,13 +223,13 @@ read.EEM.Richard <- function(filename, excitation = c(220, 450, 5), emission = c
   {
   x = unlist(strsplit(filename, "\\", fixed = T))
   ix = length(x)
-  z = unlist(strsplit(x[ix], ".", fixed = T))[2] #était à [1]
+  z = unlist(strsplit(x[ix], ".", fixed = T))[dot.number] 
   }
   else
   {
   x = unlist(strsplit(filename, "\\", fixed = T))
   ix = length(x)
-  y = unlist(strsplit(x[ix], ".", fixed = T))[2] #était à [1]
+  y = unlist(strsplit(x[ix], ".", fixed = T))[dot.number] 
   z = unlist(strsplit(y, split))
   }
  }
