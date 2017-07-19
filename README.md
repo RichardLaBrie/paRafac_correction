@@ -19,7 +19,7 @@ This will produce the output with the 25 samples given as example
 cube=PARAFAC.cube.design(dot.number = 2)
 
 ## Structure of the folders:
-The 'excitation and emission correction' .csv files (Excorr and Emcorr, respectively) have to be in the same folder as the .Rproj file.
+The 'excitation and emission correction' .csv files (Excorr and Emcorr, respectively) have to be in the same folder as the .Rproj file. The files available with the packages are given only as example. You should use your own correction files given with your fluorometer.
 
 FDOM, CDOM and nano files must be in their respective repositories and must respect the lower/upper case format (uppercase for CDOM and FDOM; lowercase for nano). All FDOM and CDOM files must have the same name.
 
