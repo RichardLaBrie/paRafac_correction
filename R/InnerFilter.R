@@ -31,8 +31,8 @@ InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2
 	{
 		Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
 		WV = Abs[,1]
-		if(min(wlex) | min(wlem) <= min(Abs[,1])) low = T
-		if(max(wlex) | max(wlem) >= max(Abs[,1])) high = T
+		if((min(wlex) | min(wlem)) <= min(Abs[,1])) low = T
+		if((max(wlex) | max(wlem)) >= max(Abs[,1])) high = T
 		if(low | high)
 		{
 			if(low) lowfrom = min(min(wlex), min(wlem))
