@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/89527851.svg)](https://zenodo.org/badge/latestdoi/89527851)  
 # paRafac_correction
 The 'data' folder contains examples of how files and folders should be organized, with matching data between CDOM and FDOM files.
 The 'MissnamedData' folder is an example where data files are properly stuctured while having a missmatch between a CDOM and a FDOM file. To identify which file is wrongly associated, look at 'verifyMatches.csv'.
