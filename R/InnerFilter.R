@@ -1,11 +1,10 @@
-InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2), pathlength=1, name.ref, skip)
+InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2), pathlength=1, name.ref, skip, data.file)
 {
 	wlex = seq(excitation[1], excitation[2], excitation[3])
 	wlem = seq(emission[1], emission[2], emission[3])
   filename = unlist(name.ref)
 	
-  setwd("./CDOM")
-	file.dir = list.files()
+	file.dir = list.files(paste0("./",data.file,"/CDOM"))
 	#nano.temp = grep("nano", file.dir)
 	#fdom.temp = grep("FDOM",file.dir)
 	#file.dir = file.dir[-nano.temp]
@@ -18,8 +17,8 @@ InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2
 	#}
 	
 	#file.data = unlist(file.list)
-  file.create("..\\verifyMatches.csv")
-  write.table(t(c("Target", "Source", "Distance")), "..\\verifyMatches.csv", append=T, sep=",", col.names = F)
+  file.create("verifyMatches.csv")
+  write.table(t(c("Target", "Source", "Distance")), "verifyMatches.csv", append=T, sep=",", col.names = F)
   
 	index = sapply(filename, selectMinStringDist, source = file.dir, name = "verifyMatches") #Was source = file.data
   #file.data = file.data[index]
@@ -47,6 +46,5 @@ InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2
 		Amat2 = 10^(-0.5 * pathlength * Amat)
 		cube[,,i] = cube[,,i] / Amat2
 	}
-	setwd("..")
-return(cube)
+	return(cube)
 }

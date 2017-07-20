@@ -41,8 +41,7 @@
 #'@export
 
 
-plot.EEM.go <- function(path, zlim = c(0, 10), 
-            SUBTRACT.BLANK = TRUE, PLOT.RAMAN = TRUE, PLOT.BLANK = TRUE, 
+plot.EEM.go <- function(path, zlim = c(0, 10), SUBTRACT.BLANK = TRUE, PLOT.RAMAN = TRUE, PLOT.BLANK = TRUE, 
             excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, RU = T)
 {
 	setwd(path)
