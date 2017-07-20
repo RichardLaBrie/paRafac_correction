@@ -1,5 +1,6 @@
 
-plot.integrate.RAMAN.go <- function(EEM, maxf, graph=T){
+plot.integrate.RAMAN.go <- function(EEM, maxf, graph=T)
+{
   
   ex350  <- which(EEM$wlex == 350)
   em370  <- which(EEM$wlem == 370)

@@ -1,4 +1,4 @@
-NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, split="_", RU = F)
+NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, split="_", RU = F, data.file)
 
 {
 	wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -6,14 +6,13 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 	nex = length(wlex)
 	nem  = length(wlem)
   
-	setwd("./nano")
 	filename = list()
 	counter = 1
 	data.list = list()
 	index = 0
 	list.length = 0
 	
-	file.list = list.files() #was file.dir
+	file.list = list.files(paste0("./",data.file,"/nano")) #was file.dir
 	#fdom.temp = grep("FDOM", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
 	#file.dir = file.dir[-fdom.temp]
@@ -60,9 +59,7 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 	if(RU)
 	{
 		data = list(EEM.list = list(eem=dummy), wlex = wlex, wlem = wlem)
-		setwd("..")
 		return(data)
 	}
-	setwd("..")
 	return(dummy)	
 }
