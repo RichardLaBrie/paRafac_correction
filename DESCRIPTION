@@ -9,5 +9,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     stringr,
-	stringdist
+	stringdist,
+	RCurl,
+	devtools
 RoxygenNote: 6.0.1
