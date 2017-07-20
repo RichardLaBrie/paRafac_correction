@@ -16,7 +16,7 @@
 #'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
 #'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
 #'@param NonNegativity is a logical parameter to transform all negative fluorescence values into 0. Default is TRUE
-#' @export
+#'@export
 PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
                                EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
                                pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T)
