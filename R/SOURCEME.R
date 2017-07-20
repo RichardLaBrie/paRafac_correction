@@ -4,6 +4,8 @@ if(!require(stringdist)) install.packages("stringdist")
 library("stringdist")
 if(!require(devtools)) install.packages("devtools")
 library("devtools")
+if(!require(RCurl)) install.packages("RCurl")
+library("RCurl")
 temp <- list.files(path = "./R")
 temp = temp[-grep("SOURCEME",temp)]
 for(i in 1:length(temp))
