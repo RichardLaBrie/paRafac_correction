@@ -12,7 +12,7 @@
 
 #Example: FolderCreation(path.to.folder = "D:/test", WorkingDirectory = "test")
 
-FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),example=FALSE)
+FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),example=TRUE)
 {
   if(dir.exists(paste0(WDpath,"\\",folder))){ stop("The data folder already exists")}
   
@@ -30,13 +30,14 @@ FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDO
     }
   
   if(example){ 
+    remove(files)
     download.file("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/example_paths.csv", "data/example_paths.csv", method="libcurl")
-  files=read.csv("data/example_paths.csv")
+  files=data.frame(path=read.csv("data/example_paths.csv")[2])
   file.remove("data/example_paths.csv")
 files$urls=paste0("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/",files$paths)
-
+ files$paths=paste0(WDpath,"\\",files$paths)
   for(i in 1:nrow(files)){
-  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl",quiet =T)}
+  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl",quiet =F)}
   }
 
 }
