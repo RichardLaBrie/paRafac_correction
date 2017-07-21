@@ -7,12 +7,12 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 	nex = length(wlex)
 	nem  = length(wlem)
   
+	subfolder = "/nano/"
 	filename = list()
 	counter = 1
 	data.list = list()
 	index = 0
 	list.length = 0
-	
 	file.list = list.files(paste0("./",data.file,"/nano")) #was file.dir
 	#fdom.temp = grep("FDOM", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
@@ -31,7 +31,8 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 		for (i in 1:length(file.data))
 		{
 			EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split = split,
-			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file)
+			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file,
+			               subfolder = subfolder)
 			data.list[[i + index]] = EEM$EEM.list
 			filename[[i + index]] = unlist(EEM$EEM.name)
 			index = index + length(file.data)
@@ -43,7 +44,8 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 		if(length(file.data) == 1)
 		{
 			EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split = split,
-			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file)
+			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file,
+			               subfolder = subfolder)
 			data.list[[index + 1]] = EEM$EEM.list
 			filename[[index + 1]] = unlist(EEM$EEM.name)
 			index = index + 1

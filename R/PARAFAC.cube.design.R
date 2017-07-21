@@ -60,6 +60,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 	filename = list()
 	index = 0
 	list.length = 0
+	subfolder = "/FDOM/"
 	while(counter <= samplepercsv)
 	{
 		if(counter == 1)
@@ -87,7 +88,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 			for (i in 1:length(file.data))
 			{
 					EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split, dot.number,
-					               fluorometer, EEMskip, data.file = data.file)
+					               fluorometer, EEMskip, data.file = data.file, subfolder = subfolder)
 					data.list[[i + index]] = EEM$EEM.list
 					filename[[i + index]] = unlist(EEM$EEM.name)
 			}
@@ -99,7 +100,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 			if(length(file.data) == 1)
 			{
 				EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split, dot.number,
-				               fluorometer, EEMskip, data.file = data.file)
+				               fluorometer, EEMskip, data.file = data.file, subfolder = subfolder)
 				data.list[[index + 1]] = EEM$EEM.list
 				filename[[index + 1]] = unlist(EEM$EEM.name)
 				index = index + 1
