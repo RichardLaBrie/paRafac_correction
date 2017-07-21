@@ -6,12 +6,13 @@
 #'@param WDpath the path to the working directory 
 #'@param folder is the name of the folder containing subfiles parameter. Default is "data"
 #'@param subfiles is the list of folder where to put cdom, fdom and nano water samples
+#'@param example TRUE if you wich to donwload exemple files to test the package
 
 #'@export
 
 #Example: FolderCreation(path.to.folder = "D:/test", WorkingDirectory = "test")
 
-FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"))
+FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),example=FALSE)
 {
   if(dir.exists(folder)) stop("The data folder already exists")
   
@@ -28,9 +29,14 @@ FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDO
     dir.create(file.path(path.to.folder,"/data",subfiles[i]), showWarnings = FALSE)
     }
   
-  files=data.frame(paths=paste0("data/",list.files("data",recursive=T)))
-  files$urls=paste0("https://github.com/RichardLaBrie/paRafac_correction/blob/Development/",files$paths)
-  i=1
-  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl")
+  if(example){ 
+    download.file("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/example_paths.csv", "data/example_paths.csv", method="libcurl")
+  files=read.csv("data/example_paths.csv")
+  file.remove("data/example_paths.csv")
+files$urls=paste0("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/",files$paths)
+
+  for(i in 1:nrow(files)){
+  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl",quiet =T)}
+  }
 
 }
