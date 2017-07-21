@@ -25,44 +25,40 @@
 
 SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 275, To = 650, By = 1, skip = 1)
 {
-    setwd(paste0("./",data.file,"/CDOM"))
-    if(!FileSelect) file.dir = list.files()
-    if(FileSelect) file.dir = choose.files()
-    #create sequence of desired wavelengths
-    wl.x = seq(From, To, By)
-    #Create the output matrix
-    output = matrix(0,ncol = 4, nrow = length(file.dir))
-    colnames(output) = c("Intercept", "Slope", "R2", "K")
-    rownames(output) = file.dir
+  if(!FileSelect) file.dir = list.files(paste0("./",data.file,"/CDOM"))
+  if(FileSelect) file.dir = choose.files(paste0("./",data.file,"/CDOM"))
+  #create sequence of desired wavelengths
+  wl.x = seq(From, To, By)
+  #Create the output matrix
+  output = matrix(0,ncol = 4, nrow = length(file.dir))
+  colnames(output) = c("Intercept", "Slope", "R2", "K")
+  rownames(output) = file.dir
+  
+  #Compute the exponential fit for each CDOM file
+  for(i in 1:length(file.dir))
+  {
+    Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
+    WL = Abs[,1]
+    a0 = Abs[which(Abs[,1] == wl0),2]
+    Abs.y = sapply(wl.x, function(x){return(subset(Abs[,2], WL == x))})
+    nls.temp <- nls(Abs.y ~ a0 * exp(-S * (wl.x - wl0)) + K, 
+                start = list(a0 = a0, S = 0.02, K = 0.02), #a0 is bounded between 0 and the highest observed value
+                lower = list(a0 = 0, S = 0, K = 0), #S is bounded between 0 and 1 otherwise the function grows
+                upper = list(a0 = max(Abs.y), S = 1, K = 3),
+                control = list(maxiter = 200, warnOnly = T),
+                algorithm = "port") #K is theoritically unbound [-Inf:Inf], but such values make no sense in this context. We've set the boundary to 0 and 3, which is the limit for absorption correction used with EEMs ()
     
-    #Compute the exponential fit for each CDOM file
-    for(i in 1:length(file.dir))
-    {
-      Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
-      WL = Abs[,1]
-      a0 = Abs[which(Abs[,1] == wl0),2]
-      Abs.y = sapply(wl.x, function(x){return(subset(Abs[,2], WL == x))})
-      nls.temp <- nls(Abs.y ~ a0 * exp(-S * (wl.x - wl0)) + K, 
-                  start = list(a0 = a0, S = 0.02, K = 0.02), #a0 is bounded between 0 and the highest observed value
-                  lower = list(a0 = 0, S = 0, K = 0), #S is bounded between 0 and 1 otherwise the function grows
-                  upper = list(a0 = max(Abs.y), S = 1, K = 3),
-                  control = list(maxiter = 200, warnOnly = T),
-                  algorithm = "port") #K is theoritically unbound [-Inf:Inf], but such values make no sense in this context. We've set the boundary to 0 and 3, which is the limit for absorption correction used with EEMs ()
-      
-      R2 <- 1 - sum((Abs.y - predict(nls.temp))^2) / (length(Abs.y) * var(Abs.y)) #Denominator is sum(y-mean(y))² which is variance(y) times length(y)
-      
-      output[i,1] = coef(nls.temp)[1]
-      output[i,2] = coef(nls.temp)[2]
-      output[i,3] = R2
-      output[i,4] = coef(nls.temp)[3]
-    }
-    class(output) = "SpectralSlope"
+    R2 <- 1 - sum((Abs.y - predict(nls.temp))^2) / (length(Abs.y) * var(Abs.y)) #Denominator is sum(y-mean(y))² which is variance(y) times length(y)
     
-    #Go back to main folder
-    setwd("..")
-    setwd("..")
-    #Return the result
-    return(output)
+    output[i,1] = coef(nls.temp)[1]
+    output[i,2] = coef(nls.temp)[2]
+    output[i,3] = R2
+    output[i,4] = coef(nls.temp)[3]
+  }
+  class(output) = "SpectralSlope"
+  
+  #Return the result
+  return(output)
 }
 
 #FileSelect is a logical argument for the number of files to load. Default is FALSE, meaning that the function
@@ -81,9 +77,8 @@ SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 
 Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
 {
 
-  setwd("./data/CDOM")
-  if(!FileSelect) file.dir = list.files()
-  if(FileSelect) file.dir = choose.files()
+  if(!FileSelect) file.dir = list.files("./data/CDOM")
+  if(FileSelect) file.dir = choose.files("./data/CDOM")
   wl.num = seq(wl1.1, wl1.2, By)
   wl.denom = seq(wl2.1, wl2.2, By)
   Sr = matrix(0, nrow = length(file.dir), ncol=1)
@@ -104,9 +99,6 @@ Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 40
     Sr[i,1] = Slope.num / Slope.denom
   }
   
-  #Go back to main folder
-  setwd("..")
-  setwd("..")
   #Return result
   return(Sr)
   
@@ -140,9 +132,8 @@ Sr.spectralslope <- function(data, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 
 SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SUVAMatches")
 {
   if(unit == "uM") DOC = DOC * 12 / 1000
-  setwd("./data/CDOM")
-  if(!FileSelect) file.dir = list.files()
-  if(FileSelect) file.dir = choose.files()
+  if(!FileSelect) file.dir = list.files("./data/CDOM")
+  if(FileSelect) file.dir = choose.files("./data/CDOM")
   
   #Create the .csv file to make sure matches were done correctly
   file.create("..\\SUVAMatches.csv")
@@ -161,9 +152,6 @@ SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SU
     SUVA254[i,1] = a254 / DOC[i]
   }
   
-  #Return to main folder
-  setwd("..")
-  setwd("..")
   #Name column and rows
   rownames(SUVA254) = rownames(DOC)
   colnames(SUVA254) = "SUVA"

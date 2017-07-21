@@ -4,15 +4,17 @@
 \alias{FolderCreation}
 \title{Creates data folder, subfolder and R project}
 \usage{
-FolderCreation(path.to.folder, WorkingDirectory, subfiles = c("CDOM", "FDOM",
-  "nano"))
+FolderCreation(WDpath = ".", folder = "data", subfiles = c("CDOM", "FDOM",
+  "nano"), example = TRUE)
 }
 \arguments{
-\item{path.to.folder}{is the path where the working directory is}
+\item{WDpath}{the path to the working directory}
 
-\item{WorkingDirectory}{is the name of the working directory}
+\item{folder}{is the name of the folder containing subfiles parameter. Default is "data"}
 
 \item{subfiles}{is the list of folder where to put cdom, fdom and nano water samples}
+
+\item{example}{TRUE if you wich to donwload exemple files to test the package}
 }
 \description{
 This function creates folders and .Rproj file require by the various functions to work.

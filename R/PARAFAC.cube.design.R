@@ -14,10 +14,19 @@
 #'@param EmEx.cor is a logical parameter to correct EEMs for emission and excitation corrections.
 #'Default is True. Emission and excitation file must be numerics only stored in csv file.
 #'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
-#'
 #'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
-#' @export
-PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_", skip = 1,  dot.number = 1)
+#'@param NonNegativity is a logical parameter to transform all negative fluorescence values into 0. Default is TRUE
+#'@param fluorometer is a paramater for the fluorometer model. Default is "Cary Eclipse".
+#'Other model supported: "Shimadzu"
+#'@param EEMskip is a parameter to skip lines in EEM file before data. Default is 1
+
+
+
+#'@export
+PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
+                               EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
+                               pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T,
+                               fluorometer = "Cary Eclipse", EEMskip = 1)
 {
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -25,9 +34,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
   nex = length(wlex)
   nem  = length(wlem)
 
- setwd(paste0("./",data.file))
- setwd("./FDOM")
-	file.dir = list.files()
+	file.dir = list.files(paste0("./",data.file,"/FDOM"))
 	#nano.temp = grep("nano", file.dir)
 	#cdom.temp = grep("CDOM", file.dir)
 	#file.dir = file.dir[-nano.temp]
@@ -53,6 +60,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 	filename = list()
 	index = 0
 	list.length = 0
+	subfolder = "/FDOM/"
 	while(counter <= samplepercsv)
 	{
 		if(counter == 1)
@@ -79,7 +87,8 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 		{
 			for (i in 1:length(file.data))
 			{
-					EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
+					EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split, dot.number,
+					               fluorometer, EEMskip, data.file = data.file, subfolder = subfolder)
 					data.list[[i + index]] = EEM$EEM.list
 					filename[[i + index]] = unlist(EEM$EEM.name)
 			}
@@ -90,7 +99,8 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 		{
 			if(length(file.data) == 1)
 			{
-				EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
+				EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split, dot.number,
+				               fluorometer, EEMskip, data.file = data.file, subfolder = subfolder)
 				data.list[[index + 1]] = EEM$EEM.list
 				filename[[index + 1]] = unlist(EEM$EEM.name)
 				index = index + 1
@@ -100,11 +110,10 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 		counter = counter + 1
 	}
 	cube = array(unlist(data.list), dim = c(nex, nem, list.length))
-	setwd("..")
 	
 	if(Subtract.Blank)
 	{
-	 Raman = NanoMean(excitation, emission, EMCOL, RU = T, split = split)
+	 Raman = NanoMean(excitation, emission, EMCOL, RU = T, split, data.file, fluorometer, EEMskip)
 	 for(k in 1:length(cube[1,1,]))
 	 {
 	  cube[,,k] = cube[,,k] - Raman[[1]]$eem[,,1]
@@ -112,7 +121,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 	}
 	if(Inner)
 	{
-	 cube = InnerFilter(cube, excitation, emission, pathlength, filename, skip)
+	 cube = InnerFilter(cube, excitation, emission, pathlength, filename, skip, data.file)
 	}
 
 	if(rm.corner)
@@ -128,7 +137,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
   {
     if(Subtract.Blank == F)
     {
-      Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T)
+      Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T, data.file, fluorometer, EEMskip)
     }
   
     RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = F)
@@ -140,8 +149,8 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
   }
   if(EmEx.cor)
   {
-   file.Em = read.csv("../Emcorr.csv")
-   file.Ex = read.csv("../Excorr.csv")
+   file.Em = read.csv("Emcorr.csv")
+   file.Ex = read.csv("Excorr.csv")
    Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
    Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
    Cor.mat = Ex.cor %*% Em.cor
@@ -150,7 +159,9 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
     cube[,,k] = cube[,,k] * Cor.mat
    }
   }
-  setwd("..")
+  
+  if(NonNegativity) cube[cube < 0] = 0
+  
 	return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
 }
 
