@@ -11,5 +11,5 @@ Imports:
     stringr,
 	stringdist,
 	RCurl,
-	devtools
+	devtools,
 RoxygenNote: 6.0.1
