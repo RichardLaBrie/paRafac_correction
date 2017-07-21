@@ -51,7 +51,7 @@ read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 60
   
   if(fluorometer == "Cary Eclipse")
   {
-    data = read.csv(paste0("./",data.file, subfolder,subfolder, filename), skip = EEMskip)
+    data = read.csv(paste0("./",data.file, subfolder, filename), skip = EEMskip)
     eem = matrix(nrow = nex, ncol = nem)
     eem2 = matrix(nrow = nex, ncol = nem)
     eem3 = matrix(nrow = nex, ncol = nem)
