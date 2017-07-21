@@ -31,7 +31,7 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 		for (i in 1:length(file.data))
 		{
 			EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split = split,
-			               fluorometer = fluorometer, EEMskip = EEMskip)
+			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file)
 			data.list[[i + index]] = EEM$EEM.list
 			filename[[i + index]] = unlist(EEM$EEM.name)
 			index = index + length(file.data)
@@ -43,7 +43,7 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 		if(length(file.data) == 1)
 		{
 			EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split = split,
-			               fluorometer = fluorometer, EEMskip = EEMskip)
+			               fluorometer = fluorometer, EEMskip = EEMskip, data.file = data.file)
 			data.list[[index + 1]] = EEM$EEM.list
 			filename[[index + 1]] = unlist(EEM$EEM.name)
 			index = index + 1

@@ -25,7 +25,7 @@
 
 read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2),
                      EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1,
-                     fluorometer = "Cary Eclipse", EEMskip)
+                     fluorometer = "Cary Eclipse", EEMskip, data.file = "data")
 {
 
   # define wavelenght vectors and matrix
@@ -37,7 +37,7 @@ read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 60
 
   if(fluorometer == "Shimadzu")
   {
-    data = read.csv(filename, skip = EEMskip)
+    data = read.csv(paste0("./",data.file,"/FDOM/",filename), skip = EEMskip)
     Ex = rep(wlex,each=nem)
     data = cbind(Ex, data)
     colnames(data) = c("Ex", "Em", "Fluo")
@@ -51,7 +51,7 @@ read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 60
   
   if(fluorometer == "Cary Eclipse")
   {
-    data = read.csv(filename, skip = EEMskip)
+    data = read.csv(paste0("./",data.file,"/FDOM/",filename), skip = EEMskip)
     eem = matrix(nrow = nex, ncol = nem)
     eem2 = matrix(nrow = nex, ncol = nem)
     eem3 = matrix(nrow = nex, ncol = nem)
