@@ -14,7 +14,7 @@
 
 FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),example=FALSE)
 {
-  if(dir.exists(paste0(WDpath,"\",folder))) stop("The data folder already exists")
+  if(dir.exists(paste0(WDpath,"\",folder)){ stop("The data folder already exists")}
   
   dir=basename(WDpath)
   if(dir=="."){dir=basename(getwd())}
