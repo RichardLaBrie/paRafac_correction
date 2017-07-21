@@ -16,10 +16,17 @@
 #'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
 #'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
 #'@param NonNegativity is a logical parameter to transform all negative fluorescence values into 0. Default is TRUE
+#'@param fluorometer is a paramater for the fluorometer model. Default is "Cary Eclipse".
+#'Other model supported: "Shimadzu"
+#'@param EEMskip is a parameter to skip lines in EEM file before data. Default is 1
+
+
+
 #'@export
 PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
                                EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
-                               pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T)
+                               pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T,
+                               fluorometer = "Cary Eclipse", EEMskip = 1)
 {
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -79,7 +86,8 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 		{
 			for (i in 1:length(file.data))
 			{
-					EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
+					EEM = read.EEM(file.data[i], excitation, emission, EMCOL, counter, split, dot.number,
+					               fluorometer, EEMskip)
 					data.list[[i + index]] = EEM$EEM.list
 					filename[[i + index]] = unlist(EEM$EEM.name)
 			}
@@ -90,7 +98,8 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 		{
 			if(length(file.data) == 1)
 			{
-				EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split = split, dot.number = dot.number)
+				EEM = read.EEM(file.data, excitation, emission, EMCOL, counter, split, dot.number,
+				               fluorometer, EEMskip)
 				data.list[[index + 1]] = EEM$EEM.list
 				filename[[index + 1]] = unlist(EEM$EEM.name)
 				index = index + 1
@@ -103,7 +112,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 	
 	if(Subtract.Blank)
 	{
-	 Raman = NanoMean(excitation, emission, EMCOL, RU = T, split = split, data.file)
+	 Raman = NanoMean(excitation, emission, EMCOL, RU = T, split, data.file, fluorometer, EEMskip)
 	 for(k in 1:length(cube[1,1,]))
 	 {
 	  cube[,,k] = cube[,,k] - Raman[[1]]$eem[,,1]
@@ -127,7 +136,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
   {
     if(Subtract.Blank == F)
     {
-      Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T, data.file)
+      Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T, data.file, fluorometer, EEMskip)
     }
   
     RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = F)

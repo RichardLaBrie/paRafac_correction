@@ -11,6 +11,10 @@
 #'@param samplepercsv is a parameter which indicates the number of sample
 #'@param split is a parameter to define the symbol between your samples name if samplepercsv > 1.
 #'Default is "_"
+#'@param dot.number is a paramater for the number of . in CDOM file name. Default is 1 (.txt or .csv)
+#'@param fluorometer is a paramater for the fluorometer model. Default is "Cary Eclipse".
+#'Other model supported: "Shimadzu"
+#'@param EEMskip is a parameter to skip lines in EEM file before data. Default is 1
 #'
 #'@seealso \code{\link{plot.EEM.go}}
 #'
@@ -21,7 +25,7 @@
 
 read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2),
                      EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1,
-                     fluorometer = "Cary Eclipse")
+                     fluorometer = "Cary Eclipse", EEMskip)
 {
 
   # define wavelenght vectors and matrix
@@ -31,14 +35,28 @@ read.EEM <- function(filename, excitation = c(220, 450, 5), emission = c(230, 60
   nex = length(wlex)
   nem = length(wlem)
 
-  data = read.csv(filename, skip = 1)
-  eem = matrix(nrow = nex, ncol = nem)
-  eem2 = matrix(nrow = nex, ncol = nem)
-  eem3 = matrix(nrow = nex, ncol = nem)
-  eem4 = matrix(nrow = nex, ncol = nem)
-  data = as.matrix(data)
-  
+  if(fluorometer == "Shimadzu")
   {
+    data = read.csv(filename, skip = EEMskip)
+    Ex = rep(wlex,each=nem)
+    data = cbind(Ex, data)
+    colnames(data) = c("Ex", "Em", "Fluo")
+    eem = reshape(data, idvar = "Ex", timevar = "Em", direction = "wide")
+    eem = eem[,-1]
+    rownames(eem) = wlex
+    colnames(eem) = wlem
+  }
+  
+  
+  
+  if(fluorometer == "Cary Eclipse")
+  {
+    data = read.csv(filename, skip = EEMskip)
+    eem = matrix(nrow = nex, ncol = nem)
+    eem2 = matrix(nrow = nex, ncol = nem)
+    eem3 = matrix(nrow = nex, ncol = nem)
+    eem4 = matrix(nrow = nex, ncol = nem)
+    data = as.matrix(data)
     # lopp on either nem or nex
 	  if (EMCOL)
   	{
