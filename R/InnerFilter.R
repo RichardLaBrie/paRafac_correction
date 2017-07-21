@@ -28,9 +28,9 @@ InnerFilter = function(cube, excitation = c(220,450,5), emission = c(230, 600, 2
 
 	for(i in 1:length(file.dir)) #when file.dir, it was file.data
 	{
-		Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
-		if((min(wlex) | min(wlem)) <= min(Abs[,1])) low = T
-		if((max(wlex) | max(wlem)) >= max(Abs[,1])) high = T
+		Abs = read.table(paste0("./", data.file, "/CDOM/", file.dir[i]), skip = skip, header = skip + 1, sep=",")
+		if(min(wlex) <= min(Abs[,1]) | min(wlem) <= min(Abs[,1])) low = T
+		if(max(wlex) >= max(Abs[,1]) | max(wlem) >= max(Abs[,1])) high = T
 		if(low | high)
 		{
 			if(low) lowfrom = min(min(wlex), min(wlem))
