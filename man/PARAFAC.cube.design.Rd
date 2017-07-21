@@ -8,7 +8,8 @@ ready for PARAFAC analysis in Matlab}
 PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T,
   rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
-  skip = 1, dot.number = 1)
+  skip = 1, dot.number = 1, NonNegativity = T,
+  fluorometer = "Cary Eclipse", EEMskip = 1)
 }
 \arguments{
 \item{excitation}{is a vector of three variables of the scanning setup (min,max,interval).
@@ -29,6 +30,13 @@ Default is True. Emission and excitation file must be numerics only stored in cs
 \item{skip}{is a parameter to determine how many lines will be skiped before the header in the absorbance files}
 
 \item{dot.number}{is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"}
+
+\item{NonNegativity}{is a logical parameter to transform all negative fluorescence values into 0. Default is TRUE}
+
+\item{fluorometer}{is a paramater for the fluorometer model. Default is "Cary Eclipse".
+Other model supported: "Shimadzu"}
+
+\item{EEMskip}{is a parameter to skip lines in EEM file before data. Default is 1}
 }
 \description{
 This function reads any number of EEMs and produce a cube of EEMs.
