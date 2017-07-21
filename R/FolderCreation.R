@@ -4,15 +4,16 @@
 #'These steps can be done by hand instead.
 
 #'@param WDpath the path to the working directory 
+#'@param folder is the name of the folder containing subfiles parameter. Default is "data"
 #'@param subfiles is the list of folder where to put cdom, fdom and nano water samples
 
 #'@export
 
 #Example: FolderCreation(path.to.folder = "D:/test", WorkingDirectory = "test")
 
-FolderCreation <- function(WDpath=".", subfiles = c("CDOM","FDOM","nano"))
+FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"))
 {
-  if(dir.exists("data")) stop("The data folder already exists")
+  if(dir.exists(folder)) stop("The data folder already exists")
   
   dir=basename(WDpath)
   if(dir=="."){dir=basename(getwd())}
