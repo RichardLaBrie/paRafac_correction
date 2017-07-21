@@ -15,7 +15,7 @@ FolderCreation <- function(WDpath=".", subfiles = c("CDOM","FDOM","nano"))
   if(dir.exists("data")) stop("The data folder already exists")
   
   dir=basename(WDpath)
-  if(dir==".")dir=basename(getwd())
+  if(dir=="."){dir=basename(getwd())}
   
   path <- file.path(WDpath, paste0(dir, ".Rproj"))
   template_path <- system.file("templates/template.Rproj", package = "devtools")
@@ -27,7 +27,9 @@ FolderCreation <- function(WDpath=".", subfiles = c("CDOM","FDOM","nano"))
     dir.create(file.path(path.to.folder,"/data",subfiles[i]), showWarnings = FALSE)
     }
   
-  files=data.frame(list.files("data",recursive=T))
-  
-}
+  files=data.frame(paths=paste0("data/",list.files("data",recursive=T)))
+  files$urls=paste0("https://github.com/RichardLaBrie/paRafac_correction/blob/Development/",files$paths)
+  i=1
+  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl")
+
 }
