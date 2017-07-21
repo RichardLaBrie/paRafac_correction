@@ -26,7 +26,7 @@ FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDO
   dir.create(file.path(WDpath,"data"), showWarnings = T)
     for(i in 1:3)
   {
-    dir.create(file.path(path.to.folder,"/data",subfiles[i]), showWarnings = FALSE)
+    dir.create(file.path(WDpath,"/data",subfiles[i]), showWarnings = FALSE)
     }
   
   if(example){ 
