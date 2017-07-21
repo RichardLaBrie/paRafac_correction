@@ -17,8 +17,16 @@ CDOMFileCorrection <- function(CDOM, low, high, lowfrom = 0, lowto = 0, highfrom
 {
 	if(low) low.seq = seq(lowfrom, lowto, 1)
 	if(high) high.seq = seq(highfrom, highto, 1)	
-	if(low) output = matrix(low.seq, byrow = F, ncol = 2, nrow = length(low.seq))
-	if(high) output2 = matrix(high.seq, byrow = F, ncol = 2, nrow = length(high.seq))
+	if(low)
+	{
+		output = matrix(low.seq, byrow = F, ncol = 2, nrow = length(low.seq))
+		colnames(output) = colnames(CDOM)
+	}
+	if(high)
+	{
+		output2 = matrix(high.seq, byrow = F, ncol = 2, nrow = length(high.seq))
+		colnames(output2) = colnames(CDOM)
+	}
 	if(low) CDOM = rbind(output, CDOM)
 	if(high) CDOM = rbind(CDOM, output2)
 	return(CDOM)
