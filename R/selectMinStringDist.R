@@ -9,6 +9,6 @@ selectMinStringDist = function(target, source, name)
   dist = stringdist::stringdist(target, source, method="lcs")
   index = which.min(dist)
   min = dist[index]
-  write.table(t(c(target, source[index] ,min)), paste("..\\",name,".csv",sep=""), append=T, sep = ",", col.names = F)
+  write.table(t(c(target, source[index] ,min)), paste(name,".csv",sep=""), append=T, sep = ",", col.names = F)
   return(c(index))
 }
