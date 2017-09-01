@@ -7,7 +7,7 @@ The 'MissnamedData' folder is an example where data files are properly stuctured
 ```R
 if (!require("devtools")) install.packages("devtools")
 library("devtools")  
-devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Master")  
+devtools::install_github("RichardLaBrie/paRafac_correction")  
 library("paRafac.correction")  
 ```
 ## Download and give it a try!  
