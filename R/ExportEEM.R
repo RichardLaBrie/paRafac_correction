@@ -16,7 +16,7 @@ ExportEEM <- function(cube, cut = c(0,0,0))
 	EEMCut = 0
 	if(cut[1] > 0)
 	{
-	  ExCut = c(1,cut[1])
+	  ExCut = c(1:cut[1])
 		cube[[1]] = cube[[1]][-ExCut,,]
 		cube[[3]] = cube[[3]][-ExCut]
 	}
