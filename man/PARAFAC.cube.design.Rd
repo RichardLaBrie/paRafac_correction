@@ -9,7 +9,8 @@ PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T,
   rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
   skip = 1, dot.number = 1, NonNegativity = T,
-  fluorometer = "Cary Eclipse", EEMskip = 1)
+  fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,
+  1))
 }
 \arguments{
 \item{excitation}{is a vector of three variables of the scanning setup (min,max,interval).
@@ -37,6 +38,10 @@ Default is True. Emission and excitation file must be numerics only stored in cs
 Other model supported: "Shimadzu"}
 
 \item{EEMskip}{is a parameter to skip lines in EEM file before data. Default is 1}
+
+\item{rm.scat}{is a logical parameter to remove Reyleigh and Raman scatterings.}
+
+\item{zlim}{is the intensity to plot the EEMs. Negative and values outside of scale bar will be white}
 }
 \description{
 This function reads any number of EEMs and produce a cube of EEMs.
