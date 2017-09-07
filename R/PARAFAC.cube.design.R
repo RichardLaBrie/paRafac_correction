@@ -19,6 +19,9 @@
 #'@param fluorometer is a paramater for the fluorometer model. Default is "Cary Eclipse".
 #'Other model supported: "Shimadzu"
 #'@param EEMskip is a parameter to skip lines in EEM file before data. Default is 1
+#'@param rm.scat is a logical parameter to remove Reyleigh and Raman scatterings.
+#'@param zlim is the intensity to plot the EEMs. Negative and values outside of scale bar will be white
+
 
 
 
@@ -26,7 +29,7 @@
 PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
                                EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
                                pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T,
-                               fluorometer = "Cary Eclipse", EEMskip = 1)
+                               fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,1))
 {
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -160,6 +163,39 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
    }
   }
   
+	if(rm.scat)
+	{
+	  while(1)
+	  {
+	    CubeTemp = cube[,,1]
+	    ScatRangeList = readline(prompt = "Enter a vector of 8 values for Raman and Reyleigh scatterings (Ex. 10,10,10,10,10,10,10,10)")
+	    ScatRange = as.numeric(unlist(strsplit(ScatRangeList, ",")))
+	    for(i in 1:length(CubeTemp[,1]))
+	    {
+	      CubeTemp[i,wlem<=(wlex[i]+ScatRange[2]) & wlem >=(wlex[i]-ScatRange[1])]=NA #Removes band of 1st order Rayleigh
+	      CubeTemp[i,wlem<=(-wlex[i] / (0.00036*wlex[i]-1) +ScatRange[4]) & wlem >=(-wlex[i] / (0.00036*wlex[i]-1) - ScatRange[3])] = NA
+	      CubeTemp[i,wlem<=(2*wlex[i]+ScatRange[6]) & wlem >=(2*wlex[i]-ScatRange[5])]=NA #Removes band of 2nd order Rayleigh
+	      CubeTemp[i,wlem<=(-2*wlex[i] / (0.00036*wlex[i]-1) +ScatRange[8]) & wlem >=(-2*wlex[i] / (0.00036*wlex[i]-1) - ScatRange[3])] = NA
+	    }
+	    filled.contour(wlex, wlem, CubeTemp, color.palette = myPalette,
+	                   xlab = "Excitation (nm)", ylab = "Emission (nm)",
+	                   main = "Example", zlim = zlim, nlevels = 50)
+	    Exit = readline(prompt = "Are you satisfified with the graph (Y/N)")
+	    if(Exit == "Y") break()
+	  }
+	  
+	  for(k in 1:length(cube[1,1,]))
+	  {
+	    for(i in 1:length(cube[,1,1]))
+	    {
+	      cube[i,wlem<=(wlex[i]+ScatRange[2]) & wlem >=(wlex[i]-ScatRange[1]),k] = NA #Removes band of 1st order Rayleigh
+	      cube[i,wlem<=(-wlex[i] / (0.00036*wlex[i]-1) +ScatRange[4]) & wlem >=(-wlex[i] / (0.00036*wlex[i]-1) - ScatRange[3]),k] = NA #Removes band of 1st order Raman
+	      cube[i,wlem<=(2*wlex[i]+ScatRange[6]) & wlem >=(2*wlex[i]-ScatRange[5]),k] = NA #Removes band of 2nd order Rayleigh
+	      cube[i,wlem<=(-2*wlex[i] / (0.00036*wlex[i]-1) +ScatRange[4]) & wlem >=(-2*wlex[i] / (0.00036*wlex[i]-1) - ScatRange[3]),k] = NA #Removes band of 2nd order Raman
+	    }
+	  }
+	}
+	
   if(NonNegativity) cube[cube < 0] = 0
   
 	return(list(cube, as.vector(unlist(filename)), wlex, wlem, list.length))
