@@ -7,7 +7,7 @@ The 'MissnamedData' folder is an example where data files are properly stuctured
 ```R
 if (!require("devtools")) install.packages("devtools")
 library("devtools")  
-devtools::install_github("RichardLaBrie/paRafac_correction",ref = "Master")  
+devtools::install_github("RichardLaBrie/paRafac_correction")  
 library("paRafac.correction")  
 ```
 ## Download and give it a try!  
@@ -17,7 +17,7 @@ FolderCreation(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),e
 ```
 Try the package main function 
 ```R
-cube=PARAFAC.cube.design(dot.number = 2)
+cube=PARAFAC.cube.design(dot.number = 2, zlim = c(0,20))
 ```
 ## Structure of the folders:
 The 'excitation and emission correction' .csv files (Excorr and Emcorr, respectively) have to be in the same folder as the .Rproj file. The files available with the packages are given only as example. You should use your own correction files given with your fluorometer.
