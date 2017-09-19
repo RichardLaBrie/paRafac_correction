@@ -1,0 +1,10 @@
+TY  - BOOK
+AU  - LaBrie, Richard
+AU  - Fortin St-Gelais, Nicolas
+AU  - Bélanger, Simon
+PY  - 2017/07/21
+JF  - R News
+T1  - paRafac.correction: an R Package to correct EEMs and derive CDOM and FDOM indices
+DO  - http://doi.org/10.5281/zenodo.833530
+UR  - https://github.com/RichardLaBrie/paRafac_correction
+ER  - 
