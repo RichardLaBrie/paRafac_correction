@@ -37,17 +37,12 @@ FDOM, CDOM and nano files must be in their respective repositories and must resp
 4. Import Selection
 5. Repeat steps for emission (Em in next steps) and excitation (Ex in next steps) sequences, but choose _Column vectors_
 
+```Matlab
 nEx = size(Ex,1); %Gives the number of excitation you use
-
 nEm = size(Em,1); %Gives the number of emission you use
-
 nSample = size(DataCube,2)/nEm; %Gives the number of sample you have
-
 Data = DataCube;
-
 X = reshape(DataCube, nEx, nEm, nSample); %Reshape the matrix to create a cube
-
 X = permute(X, [3 2 1]); %Rotate the cube in the correct order for EEMs
-
-
+```
 From here, you can follow commands from DrEEM toolbox (Murphy K.R., Stedmon C.A., Graeber D. and R. Bro, Fluorescence spectroscopy and multi-way techniques. PARAFAC, Anal. Methods, 2013, DOI:10.1039/c3ay41160e.)
