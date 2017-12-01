@@ -2,6 +2,7 @@
 
 S3method(plot,EEM.go)
 export(CDOMOverlay)
+export(DeltaEEM)
 export(DilutionFactor)
 export(ExportEEM)
 export(FI)
