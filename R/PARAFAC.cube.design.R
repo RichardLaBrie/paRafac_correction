@@ -3,6 +3,7 @@
 #'
 #'@description This function reads any number of EEMs and produce a cube of EEMs.
 #'It enables the standardization into Raman Unit and instrument's corrections.
+#'@param data.file is the name of the main folder where CDOM, FDOM and nano folders are
 #'@param excitation is a vector of three variables of the scanning setup (min,max,interval).
 #'Default is c(220,450,5)
 #'@param emission is a vector of three variables of the scanning setup (min,max,interval).
@@ -11,8 +12,13 @@
 #'stored as column in the csv file. Default is FALSE.
 #'@param RU is a logical parameter to transform fluorescence intensities into Raman Unit at Ex = 350 nm.
 #'Default is TRUE.
+#'@param rm.corner is a logical parameter to set the bottom right corner values to 0
 #'@param EmEx.cor is a logical parameter to correct EEMs for emission and excitation corrections.
 #'Default is True. Emission and excitation file must be numerics only stored in csv file.
+#'@param Inner is a logical parameter to apply inner filter effect correction. Default is True
+#'@param pathlength is a real number indicating the length of the optical path in the spectrophotometer in cm.
+#'Default is 1
+#'@param split is the symbol used to separate each EEM when using a multicell holder
 #'@param skip is a parameter to determine how many lines will be skiped before the header in the absorbance files
 #'@param dot.number is the number of "." in the name of your EEMs file. This number includes the "." in ".csv"
 #'@param NonNegativity is a logical parameter to transform all negative fluorescence values into 0. Default is TRUE
