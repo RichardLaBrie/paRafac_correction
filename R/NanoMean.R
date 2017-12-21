@@ -1,5 +1,5 @@
 NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL = F, split="_", RU = F,
-                    data.file, fluorometer, EEMskip)
+                    data.file, fluorometer, EEMskip, sd=F)
 
 {
 	wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -59,7 +59,14 @@ NanoMean = function(excitation = c(220,450,5), emission = c(230, 600, 2), EMCOL 
 	{
 		dummy[,,1] = nano[,,i] + dummy[,,1]
 	}
-	dummy = dummy / length(file.data)
+	dummy = dummy / length(file.data) #Calculate mean of nano files
+	
+	if(sd)
+	{
+	  ecartype = apply(nano,1:2,sd) #calculate sd of nano files
+	  ecartype = list(EEM.list = list(eem=ecartype), wlex = wlex, wlem = wlem)
+	  return(ecartype)
+	}
 	
 	if(RU)
 	{

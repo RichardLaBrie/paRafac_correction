@@ -13,6 +13,8 @@ PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   1))
 }
 \arguments{
+\item{data.file}{is the name of the main folder where CDOM, FDOM and nano folders are}
+
 \item{excitation}{is a vector of three variables of the scanning setup (min,max,interval).
 Default is c(220,450,5)}
 
@@ -25,8 +27,17 @@ stored as column in the csv file. Default is FALSE.}
 \item{RU}{is a logical parameter to transform fluorescence intensities into Raman Unit at Ex = 350 nm.
 Default is TRUE.}
 
+\item{rm.corner}{is a logical parameter to set the bottom right corner values to 0}
+
 \item{EmEx.cor}{is a logical parameter to correct EEMs for emission and excitation corrections.
 Default is True. Emission and excitation file must be numerics only stored in csv file.}
+
+\item{Inner}{is a logical parameter to apply inner filter effect correction. Default is True}
+
+\item{pathlength}{is a real number indicating the length of the optical path in the spectrophotometer in cm.
+Default is 1}
+
+\item{split}{is the symbol used to separate each EEM when using a multicell holder}
 
 \item{skip}{is a parameter to determine how many lines will be skiped before the header in the absorbance files}
 
