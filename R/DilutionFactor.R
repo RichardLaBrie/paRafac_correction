@@ -11,7 +11,7 @@
 DilutionFactor <- function(cube, vector.out = F)
 {
   #Reads csv file with CDOM names
-  dilution.temp = read.csv("./data/verifyMatches.csv",header=T)[,3]
+  dilution.temp = read.csv("./verifyMatches.csv",header=T)[,3]
   
   #Select the dilution factor
   dil.vec = as.numeric(gsub(pattern = ".*_|x.*", replacement = "", dilution.temp)) 
