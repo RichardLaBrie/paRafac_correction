@@ -147,7 +147,7 @@ SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SU
   SUVA254 = matrix(0, nrow = length(file.dir))
   for(i in 1:length(file.dir)) 
   {
-    Abs = read.table(paste0("./",data.file,"/CDOM"file.dir[i]), skip = skip, header = skip + 1, sep=",")
+    Abs = read.table(paste0("./",data.file,"/CDOM",file.dir[i]), skip = skip, header = skip + 1, sep=",")
     a254 = Abs[,2][Abs[,1] == wl]
     SUVA254[i,1] = a254 / DOC[i]
   }
