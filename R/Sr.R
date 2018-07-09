@@ -17,7 +17,7 @@
 
 #'@export
 
-Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
+Sr <- function(data.file = "data", FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
 {
 
   if(!FileSelect) file.dir = list.files("./data/CDOM")
