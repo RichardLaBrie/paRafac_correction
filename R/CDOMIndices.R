@@ -74,6 +74,8 @@ SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 
   #Default is TRUE. If FALSE, the function does two fit routine for each subsection of the spectra
   #Values differ more as the ratio diminish
 
+#'@export
+
 Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
 {
 
@@ -104,6 +106,8 @@ Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 40
   
 }
 
+#'@export
+
 Sr.spectralslope <- function(data, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 400, wl0 = 375)
 {
   if(class(data) != "SpectralSlope") return(Print("data must come from the SpectralSlope function"))
@@ -128,6 +132,8 @@ Sr.spectralslope <- function(data, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 
 #Column one on CDOM is wavelength (nm) and column two is absorption coefficient
 #wl is set at 254 for SUVA254 but can be change to obtain any desired wavelength
 #skip is the number of lines to skip before getting the header in CDOM files
+
+#'@export
 
 SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SUVAMatches")
 {
