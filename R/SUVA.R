@@ -20,7 +20,7 @@
 
 #'@export
 
-SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SUVAMatches")
+SUVA <- function(data.file = "data", FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SUVAMatches")
 {
   if(unit == "uM") DOC = DOC * 12 / 1000
   if(!FileSelect) file.dir = list.files("./data/CDOM")
