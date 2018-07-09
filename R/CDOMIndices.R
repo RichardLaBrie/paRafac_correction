@@ -37,7 +37,7 @@ SpectralSlope <- function(data.file = "data", FileSelect = F, wl0 = 375, From = 
   #Compute the exponential fit for each CDOM file
   for(i in 1:length(file.dir))
   {
-    Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
+    Abs = read.table(paste0("./",data.file,"/CDOM",file.dir[i]), skip = skip, header = skip + 1, sep=",")
     WL = Abs[,1]
     a0 = Abs[which(Abs[,1] == wl0),2]
     Abs.y = sapply(wl.x, function(x){return(subset(Abs[,2], WL == x))})
@@ -86,7 +86,7 @@ Sr <- function(FileSelect = F, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 = 40
   
   for(i in 1:length(file.dir)) 
   {
-    CDOM = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
+    CDOM = read.table(paste0("./",data.file,"/CDOM",file.dir[i]), skip = skip, header = skip + 1, sep=",")
     WL = CDOM[,1]
     
     Abs.num = sapply(wl.num, function(x){return(subset(CDOM[,2], WL == x))})
@@ -147,7 +147,7 @@ SUVA <- function(FileSelect = F,DOC, wl = 254, unit = "mg/L", skip = 1, name="SU
   SUVA254 = matrix(0, nrow = length(file.dir))
   for(i in 1:length(file.dir)) 
   {
-    Abs = read.table(file.dir[i], skip = skip, header = skip + 1, sep=",")
+    Abs = read.table(paste0("./",data.file,"/CDOM"file.dir[i]), skip = skip, header = skip + 1, sep=",")
     a254 = Abs[,2][Abs[,1] == wl]
     SUVA254[i,1] = a254 / DOC[i]
   }
