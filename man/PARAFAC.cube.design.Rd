@@ -10,7 +10,7 @@ PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
   skip = 1, dot.number = 1, NonNegativity = T,
   fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,
-  1))
+  1), graph = F)
 }
 \arguments{
 \item{data.file}{is the name of the main folder where CDOM, FDOM and nano folders are}
@@ -53,6 +53,8 @@ Other model supported: "Shimadzu"}
 \item{rm.scat}{is a logical parameter to remove Reyleigh and Raman scatterings.}
 
 \item{zlim}{is the intensity to plot the EEMs. Negative and values outside of scale bar will be white}
+
+\item{graph}{is a logical parameter to plot the Raman integration to transform data into RU. Default is false}
 }
 \description{
 This function reads any number of EEMs and produce a cube of EEMs.
