@@ -27,7 +27,7 @@
 #'@param EEMskip is a parameter to skip lines in EEM file before data. Default is 1
 #'@param rm.scat is a logical parameter to remove Reyleigh and Raman scatterings.
 #'@param zlim is the intensity to plot the EEMs. Negative and values outside of scale bar will be white
-
+#'@param graph is a logical parameter to plot the Raman integration to transform data into RU. Default is false
 
 
 
@@ -35,7 +35,7 @@
 PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
                                EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
                                pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T,
-                               fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,1))
+                               fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,1), graph = F)
 {
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -149,7 +149,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
       Raman = NanoMean(excitation, emission, EMCOL, split = split, RU = T, data.file, fluorometer, EEMskip)
     }
   
-    RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = F)
+    RAMANInt = plot.integrate.RAMAN(Raman, maxF, graph = graph)
     for(k in 1:length(cube[1,1,]))
     {
     cube[,,k] = cube[,,k] / RAMANInt
