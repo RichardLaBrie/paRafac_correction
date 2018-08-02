@@ -160,9 +160,9 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
   {
    file.Em = read.csv("Emcorr.csv")
    file.Ex = read.csv("Excorr.csv")
-   Ex.cor = as.numeric(na.omit(file.Ex[match(round(file.Ex[,1]), wlex), 2]))
-   Em.cor = t(as.numeric(na.omit(file.Em[match(round(file.Em[,1]), wlem), 2])))
-   Cor.mat = Ex.cor %*% Em.cor
+   Ex.cor = file.Ex[which(round(file.Ex$Wavelength..nm.) %in% wlex),2]
+   Em.cor = file.Em[which(round(file.Em$Wavelength..nm.) %in% wlem),2]
+   Cor.mat = Ex.cor %*% t(Em.cor)
    for(k in 1:length(cube[1,1,]))
    {
     cube[,,k] = cube[,,k] * Cor.mat
