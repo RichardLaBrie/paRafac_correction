@@ -35,7 +35,6 @@
 #'   Simon Bélanger & Richard LaBrie
 #'
 #'@examples
-#'
 #'plot.EEM.go(getwd(), zlim = c(0, 20), SUBTRACT.BLANK = FALSE)
 #'
 #'@export

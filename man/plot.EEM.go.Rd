@@ -46,7 +46,6 @@ A simple function to visualize EEMs obtained using a Varian Cary Eclipse fluorom
 
 }
 \examples{
-
 plot.EEM.go(getwd(), zlim = c(0, 20), SUBTRACT.BLANK = FALSE)
 
 }
