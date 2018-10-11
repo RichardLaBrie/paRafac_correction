@@ -28,6 +28,8 @@
 #'@param rm.scat is a logical parameter to remove Reyleigh and Raman scatterings.
 #'@param zlim is the intensity to plot the EEMs. Negative and values outside of scale bar will be white
 #'@param graph is a logical parameter to plot the Raman integration to transform data into RU. Default is false
+#'@param RspectroAbs is a logical parameter for the inner filter correction. When TRUE, CDOM data have been first treated by the 
+#'RspectroAbs package developed by Simon Bélanger. Default is FASLE
 
 
 
@@ -35,7 +37,7 @@
 PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), emission = c(230, 600, 2),
                                EMCOL = F, Subtract.Blank = T, RU = T, rm.corner = T, EmEx.cor = T, Inner = T,
                                pathlength = 1, split = "_", skip = 1,  dot.number = 1, NonNegativity = T,
-                               fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,1), graph = F)
+                               fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,1), graph = F, RspectroAbs = F)
 {
   samplepercsv = 4
   wlex = seq(excitation[1], excitation[2], excitation[3])
@@ -130,7 +132,7 @@ PARAFAC.cube.design = function(data.file = "data", excitation = c(220,450,5), em
 	}
 	if(Inner)
 	{
-	 cube = InnerFilter(cube, excitation, emission, pathlength, filename, skip, data.file)
+	 cube = InnerFilter(cube, excitation, emission, pathlength, filename, skip, data.file, RspectroAbs)
 	}
 
 	if(rm.corner)
