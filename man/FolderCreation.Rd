@@ -4,8 +4,8 @@
 \alias{FolderCreation}
 \title{Creates data folder, subfolder and R project}
 \usage{
-FolderCreation(WDpath = ".", folder = "data", subfiles = c("CDOM", "FDOM",
-  "nano"), example = TRUE)
+FolderCreation(WDpath = ".", folder = "data", subfiles = c("CDOM",
+  "FDOM", "nano"), example = TRUE)
 }
 \arguments{
 \item{WDpath}{the path to the working directory}

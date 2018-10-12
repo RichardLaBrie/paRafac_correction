@@ -7,10 +7,10 @@ ready for PARAFAC analysis in Matlab}
 \usage{
 PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
   emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T,
-  rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
-  skip = 1, dot.number = 1, NonNegativity = T,
-  fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,
-  1), graph = F)
+  rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1,
+  split = "_", skip = 1, dot.number = 1, NonNegativity = T,
+  fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T,
+  zlim = c(0, 1), graph = F, RspectroAbs = F)
 }
 \arguments{
 \item{data.file}{is the name of the main folder where CDOM, FDOM and nano folders are}
@@ -55,6 +55,9 @@ Other model supported: "Shimadzu"}
 \item{zlim}{is the intensity to plot the EEMs. Negative and values outside of scale bar will be white}
 
 \item{graph}{is a logical parameter to plot the Raman integration to transform data into RU. Default is false}
+
+\item{RspectroAbs}{is a logical parameter for the inner filter correction. When TRUE, CDOM data have been first treated by the 
+RspectroAbs package developed by Simon Bélanger. Default is FASLE}
 }
 \description{
 This function reads any number of EEMs and produce a cube of EEMs.

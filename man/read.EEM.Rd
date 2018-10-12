@@ -4,8 +4,8 @@
 \alias{read.EEM}
 \title{Reads CSV file of EEMs produced by the Cary Eclipe fluorometer}
 \usage{
-read.EEM(filename, excitation = c(220, 450, 5), emission = c(230, 600, 2),
-  EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1,
+read.EEM(filename, excitation = c(220, 450, 5), emission = c(230, 600,
+  2), EMCOL = FALSE, samplepercsv = 1, split = "_", dot.number = 1,
   fluorometer = "Cary Eclipse", EEMskip, data.file = "data", subfolder)
 }
 \arguments{
