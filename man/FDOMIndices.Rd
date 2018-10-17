@@ -14,7 +14,7 @@ FDOMIndices(cube, cor, rel)
 \item{rel}{is a logical argument to scale the values of HIX}
 }
 \description{
-These functions are designed to work with the output of PARAFAC.cube.design and calculate basic FDOM indices.
+This is a warp up function to calculate FI, BIX and HIX based on the output of PARAFAC.cube.design()
 }
 \references{
 Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)

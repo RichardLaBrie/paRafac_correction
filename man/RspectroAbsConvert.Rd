@@ -4,8 +4,7 @@
 \alias{RspectroAbsConvert}
 \title{RspectroAbs converter to csv files}
 \usage{
-RspectroAbsConvert(Rdatapath = "./data/Rdata/",
-  CDOMpath = "./data/CDOM/")
+RspectroAbsConvert(Rdatapath = "./data/Rdata/", CDOMpath = "./data/CDOM/")
 }
 \arguments{
 \item{Rdatapath}{is the path to you Rdata folder created by run.process.ag.batch(). Default is "./data/Rdata/"}
