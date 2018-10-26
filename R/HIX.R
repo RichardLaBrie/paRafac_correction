@@ -60,7 +60,7 @@ HIX <- function(cube, rel = FALSE)
         grid301_345[x] = mean(c(grid300_346[x],grid300_346[x+1]))
       }  
       
-      #Sum all data, except for emission = 434nm
+      #Sum all data, except for emission = 346nm
       em300_345 = sum(c(grid301_345, grid300_346[-length(grid300_346)]))
     } else
       
