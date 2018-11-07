@@ -1,4 +1,3 @@
-#'
 #'@title Subtract and plot fluorescence Excitation-Emission Matrix (EEM)
 #'
 #'@description

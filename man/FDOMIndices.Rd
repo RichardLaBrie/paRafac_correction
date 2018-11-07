@@ -4,7 +4,7 @@
 \alias{FDOMIndices}
 \title{Generic functions for commonly used FDOM indices}
 \usage{
-FDOMIndices(cube, cor, rel)
+FDOMIndices(cube, cor = T, rel = F)
 }
 \arguments{
 \item{cube}{is the output of PARAFAC.cube.design()}
