@@ -30,6 +30,11 @@ FDOM, CDOM and nano files must be in their respective repositories and must resp
 -> ->FDOM  
 -> ->nano
 
+## Validate and export your data:
+You can see all your corrected EEMs using PlotAllEEM.R on your R plots or by exporting a pdf file containing all graphs.
+Make sure that all cdom and fdom files have been correctly assigned to each other (look in verifyMatches.csv).
+Export your data cube, ready to be imported into Matlab with ExportEEM.R
+
 ## How to load the data in Matlab:
 1. Import data (DataCube in next steps)
 2. In _Range_, select B2: XYZ (don't change the end cell)
