@@ -15,6 +15,7 @@
 FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDOM","nano"),example=TRUE)
 {
   if(dir.exists(paste0(WDpath,"\\",folder))){ stop("The data folder already exists")}
+  if(folder != "data" && example == "TRUE"){ stop("Downloading the example files only works when folder=data")}
   
   dir=basename(WDpath)
   if(dir=="."){dir=basename(getwd())}
@@ -23,21 +24,22 @@ FolderCreation <- function(WDpath=".", folder = "data", subfiles = c("CDOM","FDO
   template_path <- system.file("templates/template.Rproj", package = "devtools")
   file.copy(template_path, path)
   
-  dir.create(file.path(WDpath,"data"), showWarnings = T)
-    for(i in 1:3)
+  dir.create(file.path(WDpath,folder), showWarnings = T)
+  for(i in 1:3)
   {
-    dir.create(file.path(WDpath,"/data",subfiles[i]), showWarnings = FALSE)
-    }
+    dir.create(file.path(WDpath,folder,subfiles[i]), showWarnings = FALSE)
+  }
   
   if(example){ 
-    remove(files)
+    #remove(files)
     download.file("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/example_paths.csv", "data/example_paths.csv", method="libcurl")
-  files=data.frame(path=read.csv("data/example_paths.csv")[2])
-  file.remove("data/example_paths.csv")
-files$urls=paste0("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/",files$paths)
- files$paths=paste0(WDpath,"\\",files$paths)
-  for(i in 1:nrow(files)){
-  download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl",quiet =F)}
+    files=data.frame(path=read.csv("data/example_paths.csv")[2])
+    file.remove("data/example_paths.csv")
+    files$urls=paste0("https://raw.githubusercontent.com/RichardLaBrie/paRafac_correction/Development/",files$paths)
+    files$paths=paste0(WDpath,"\\",files$paths)
+    for(i in 1:nrow(files)){
+      download.file(as.character(files$urls[i]), as.character(files$paths[i]), method="libcurl",quiet =F)}
   }
-
+  
 }
+
