@@ -24,10 +24,11 @@ Sr.spectralslope <- function(data, wl1.1 = 275, wl1.2 = 295, wl2.1 = 350, wl2.2 
   rownames(output) = rownames(data)
   for(i in 1:dim(data)[1])
   {
-  temp1 = (data[i,1] * exp(-1*data[i,2] * (wl1.2-wl0) + data[i,4]) - (data[i,1] *
-          exp(-1*data[i,2] * (wl1.1-wl0) + data[i,4])) / (wl1.2-wl1.1))
-  temp2 = (data[i,1] * exp(-1*data[i,2] * (wl2.2-wl0) + data[i,4]) - (data[i,1] *
-          exp(-1*data[i,2] * (wl2.1-wl0) + data[i,4])) / (wl2.2-wl2.1))
+  temp1 = ((data[i,1] * exp(-1*data[i,2] * (wl1.2-wl0)) + data[i,4]) - (data[i,1] *
+          exp(-1*data[i,2] * (wl1.1-wl0)) + data[i,4])) / (wl1.2-wl1.1)
+  
+  temp2 = ((data[i,1] * exp(-1*data[i,2] * (wl2.2-wl0)) + data[i,4]) - (data[i,1] *
+          exp(-1*data[i,2] * (wl2.1-wl0)) + data[i,4])) / (wl2.2-wl2.1)
   output[i,1] = temp1/temp2
   }
   
