@@ -2,7 +2,7 @@
 #'
 #'@description This is a warp up function to calculate FI, BIX and HIX based on the output of PARAFAC.cube.design()
 #'@references Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)
-#'@references Biological index (BIX) from Wilson and Xenopoulos (2009)
+#'@references Freshness index from Parlanti et al. (2000)
 #'@references Humification index (HIX) from Ohno et al (2002)
 
 #'@param cube is the output of PARAFAC.cube.design()
