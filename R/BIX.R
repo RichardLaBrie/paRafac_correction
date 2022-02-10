@@ -1,10 +1,10 @@
-#'@title Calculate BIX
+#'@title Calculate Freshness index
 #'
 #'@description This function works with the output of PARAFAC.cube.design and calculate BIX.
-#'@references Biological index (BIX) from Wilson and Xenopoulos (2009)
+#'@references Freshness index from Parlanti et al. 2000
 
 
-BIX <- function(cube)
+FreshIndex <- function(cube)
 {
   if(!is.list(cube)) return(print("You need the complete list of PARAFAC.cube.design output"))
   
