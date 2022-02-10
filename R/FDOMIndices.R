@@ -24,9 +24,9 @@ FDOMIndices <- function(cube, cor = T, rel = F)
 {
   output = matrix(0, nrow = cube[[5]], ncol=3)
   rownames(output) = cube[[2]]
-  colnames(output) = c("FI","BIX","HIX")
+  colnames(output) = c("FI","FreshIndex","HIX")
   output[,1] = FI(cube, cor)
-  output[,2] = BIX(cube)
+  output[,2] = FreshIndex(cube)
   output[,3] = HIX(cube, rel)
   return(output)
 }
