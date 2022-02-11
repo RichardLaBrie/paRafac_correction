@@ -14,7 +14,7 @@ FDOMIndices(cube, cor = T, rel = F)
 \item{rel}{is a logical argument to scale the values of HIX}
 }
 \description{
-This is a warp up function to calculate FI, BIX and HIX based on the output of PARAFAC.cube.design()
+This is a warp up function to calculate freshness index, FI, BIX and HIX based on the output of PARAFAC.cube.design()
 }
 \references{
 Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)

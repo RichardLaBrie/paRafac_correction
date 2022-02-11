@@ -1,6 +1,6 @@
 #'@title Generic functions for commonly used FDOM indices
 #'
-#'@description This is a warp up function to calculate FI, BIX and HIX based on the output of PARAFAC.cube.design()
+#'@description This is a warp up function to calculate freshness index, FI, BIX and HIX based on the output of PARAFAC.cube.design()
 #'@references Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)
 #'@references Freshness index from Parlanti et al. (2000)
 #'@references Humification index (HIX) from Ohno et al (2002)
