@@ -4,8 +4,15 @@
 \alias{SpectralSlope}
 \title{Generate the spectral slope for CDOM samples}
 \usage{
-SpectralSlope(data.file = "data", FileSelect = F, wl0 = 375, From = 275,
-  To = 650, By = 1, skip = 1)
+SpectralSlope(
+  data.file = "data",
+  FileSelect = F,
+  wl0 = 375,
+  From = 275,
+  To = 650,
+  By = 1,
+  skip = 1
+)
 }
 \arguments{
 \item{FileSelect}{is a logical parameter to allow you which file to load. Default is FALSE, meaning that all files in /CDOM

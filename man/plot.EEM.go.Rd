@@ -4,9 +4,18 @@
 \alias{plot.EEM.go}
 \title{Subtract and plot fluorescence Excitation-Emission Matrix (EEM)}
 \usage{
-\method{plot}{EEM.go}(path, zlim = c(0, 10), SUBTRACT.BLANK = TRUE,
-  PLOT.RAMAN = TRUE, PLOT.BLANK = TRUE, excitation = c(220, 450, 5),
-  emission = c(230, 600, 2), EMCOL = FALSE, samplepercsv = 1, RU = T)
+\method{plot}{EEM.go}(
+  path,
+  zlim = c(0, 10),
+  SUBTRACT.BLANK = TRUE,
+  PLOT.RAMAN = TRUE,
+  PLOT.BLANK = TRUE,
+  excitation = c(220, 450, 5),
+  emission = c(230, 600, 2),
+  EMCOL = FALSE,
+  samplepercsv = 1,
+  RU = T
+)
 }
 \arguments{
 \item{path}{Full path of the working directory (can be called using getwd())}

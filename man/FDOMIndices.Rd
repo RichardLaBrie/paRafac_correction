@@ -19,7 +19,9 @@ This is a warp up function to calculate FI, BIX and HIX based on the output of P
 \references{
 Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)
 
-Biological index (BIX) from Wilson and Xenopoulos (2009)
+Freshness index from Parlanti et al. (2000)
 
 Humification index (HIX) from Ohno et al (2002)
+
+Biological index (BIX) from Huguet et al (2009)
 }

@@ -5,12 +5,28 @@
 \title{Combine EEMs produce by the Cary Eclipse fluorometer into a cube
 ready for PARAFAC analysis in Matlab}
 \usage{
-PARAFAC.cube.design(data.file = "data", excitation = c(220, 450, 5),
-  emission = c(230, 600, 2), EMCOL = F, Subtract.Blank = T, RU = T,
-  rm.corner = T, EmEx.cor = T, Inner = T, pathlength = 1, split = "_",
-  skip = 1, dot.number = 1, NonNegativity = T,
-  fluorometer = "Cary Eclipse", EEMskip = 1, rm.scat = T, zlim = c(0,
-  1), graph = F, RspectroAbs = F)
+PARAFAC.cube.design(
+  data.file = "data",
+  excitation = c(220, 450, 5),
+  emission = c(230, 600, 2),
+  EMCOL = F,
+  Subtract.Blank = T,
+  RU = T,
+  rm.corner = T,
+  EmEx.cor = T,
+  Inner = T,
+  pathlength = 1,
+  split = "_",
+  skip = 1,
+  dot.number = 1,
+  NonNegativity = T,
+  fluorometer = "Cary Eclipse",
+  EEMskip = 1,
+  rm.scat = T,
+  zlim = c(0, 1),
+  graph = F,
+  RspectroAbs = F
+)
 }
 \arguments{
 \item{data.file}{is the name of the main folder where CDOM, FDOM and nano folders are}
