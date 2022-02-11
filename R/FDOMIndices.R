@@ -4,6 +4,7 @@
 #'@references Fluorescence index (FI) from McKnight et al (2001) and Cory and McKnight (2005)
 #'@references Freshness index from Parlanti et al. (2000)
 #'@references Humification index (HIX) from Ohno et al (2002)
+#'@references Biological index (BIX) from Huguet et al (2009)
 
 #'@param cube is the output of PARAFAC.cube.design()
 #'@param cor is a logical argument for instruments corrections applied to EEMs. Default is TRUE
@@ -22,12 +23,13 @@
 
 FDOMIndices <- function(cube, cor = T, rel = F)
 {
-  output = matrix(0, nrow = cube[[5]], ncol=3)
+  output = matrix(0, nrow = cube[[5]], ncol=4)
   rownames(output) = cube[[2]]
-  colnames(output) = c("FI","FreshIndex","HIX")
+  colnames(output) = c("FI","FreshIndex","HIX", "BIX)
   output[,1] = FI(cube, cor)
   output[,2] = FreshIndex(cube)
   output[,3] = HIX(cube, rel)
+  output[,4] = BIX(cube)
   return(output)
 }
   
