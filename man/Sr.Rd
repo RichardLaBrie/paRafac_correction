@@ -4,8 +4,16 @@
 \alias{Sr}
 \title{Calculate Sr for CDOM samples}
 \usage{
-Sr(data.file = "data", FileSelect = F, wl1.1 = 275, wl1.2 = 295,
-  wl2.1 = 350, wl2.2 = 400, By = 1, skip = 1)
+Sr(
+  data.file = "data",
+  FileSelect = F,
+  wl1.1 = 275,
+  wl1.2 = 295,
+  wl2.1 = 350,
+  wl2.2 = 400,
+  By = 1,
+  skip = 1
+)
 }
 \description{
 This function reads any number of CDOM files and calculate their Sr.

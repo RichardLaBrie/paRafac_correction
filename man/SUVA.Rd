@@ -4,8 +4,15 @@
 \alias{SUVA}
 \title{Calculate SUVA indice}
 \usage{
-SUVA(data.file = "data", FileSelect = F, DOC, wl = 254, unit = "mg/L",
-  skip = 1, name = "SUVAMatches")
+SUVA(
+  data.file = "data",
+  FileSelect = F,
+  DOC,
+  wl = 254,
+  unit = "mg/L",
+  skip = 1,
+  name = "SUVAMatches"
+)
 }
 \arguments{
 \item{FileSelect}{is a logical parameter to allow you which file to load. Default is FALSE, meaning that all files in /CDOM

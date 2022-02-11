@@ -4,8 +4,14 @@
 \alias{DeltaEEM}
 \title{Substract a corrected EEM from another}
 \usage{
-DeltaEEM(cube, diminuende, diminuteur, exact_ende = T, exact_teur = T,
-  zlim = c(-1, 1))
+DeltaEEM(
+  cube,
+  diminuende,
+  diminuteur,
+  exact_ende = T,
+  exact_teur = T,
+  zlim = c(-1, 1)
+)
 }
 \arguments{
 \item{cube}{is the output of the main function PARAFAC.cube.design()}

@@ -10,5 +10,5 @@ BIX(cube)
 This function works with the output of PARAFAC.cube.design and calculate BIX.
 }
 \references{
-Biological index (BIX) from Wilson and Xenopoulos (2009)
+Biological index (BIX) from Huguet et al. 2009
 }

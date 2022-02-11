@@ -4,9 +4,17 @@
 \alias{NanoSD}
 \title{This function calculates and plots standard deviation of nano files}
 \usage{
-NanoSD(excitation = c(220, 450, 5), emission = c(230, 600, 2), EMCOL = F,
-  split = "_", data.file = "data", fluorometer = "Cary Eclipse", EEMskip,
-  sd = T, zlim = c(0, 1))
+NanoSD(
+  excitation = c(220, 450, 5),
+  emission = c(230, 600, 2),
+  EMCOL = F,
+  split = "_",
+  data.file = "data",
+  fluorometer = "Cary Eclipse",
+  EEMskip,
+  sd = T,
+  zlim = c(0, 1)
+)
 }
 \arguments{
 \item{excitation}{is a vector of three variables of the scanning setup (min,max,interval).

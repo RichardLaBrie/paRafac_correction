@@ -4,8 +4,15 @@
 \alias{CDOMFileCorrection}
 \title{This function fills gap in missing nanometers between CDOM and FDOM matching file}
 \usage{
-CDOMFileCorrection(CDOM, low, high, lowfrom = 0, lowto = 0, highfrom = 0,
-  highto = 0)
+CDOMFileCorrection(
+  CDOM,
+  low,
+  high,
+  lowfrom = 0,
+  lowto = 0,
+  highfrom = 0,
+  highto = 0
+)
 }
 \arguments{
 \item{CDOM}{is the CDOM file to correct}
