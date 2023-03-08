@@ -24,7 +24,7 @@ for(i in 1:length(file.dir))
   CDOM = read.table(paste0("./",data.file,"/CDOM/",file.dir[i]), skip = skip, header = skip + 1, sep=",")
   WL = CDOM[,1]
   
-  CDOM440[i] = subset(CDOM[,2], WL == nm)
+  CDOM440[i,1] = subset(CDOM[,2], WL == nm)
 }
 
 #Return result
